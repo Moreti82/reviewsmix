@@ -9,7 +9,7 @@ import { PurchaseLinks } from "@/components/product/purchase-links";
 import { RatingBadge } from "@/components/product/rating-badge";
 import { SpecsTable } from "@/components/product/specs-table";
 import { JsonLd, productJsonLd } from "@/components/seo/json-ld";
-import { SanityImage } from "@/components/shared/sanity-image";
+import { ProductGallery } from "@/components/product/product-gallery";
 import { getOgImageUrl } from "@/lib/sanity/image";
 import {
   getPosts,
@@ -61,8 +61,6 @@ export default async function ProductPage({ params }: PageProps) {
     )
     .slice(0, 2);
 
-  const mainImage = product.images?.[0];
-
   return (
     <>
       <JsonLd data={productJsonLd(product)} />
@@ -79,12 +77,10 @@ export default async function ProductPage({ params }: PageProps) {
 
           <div className="mx-auto max-w-5xl">
             <div className="mx-auto max-w-3xl text-center">
-              <SanityImage
-                image={mainImage}
-                alt={product.name}
+              <ProductGallery
+                images={product.images}
+                productName={product.name}
                 fallbackSeed={product.slug}
-                aspect="product"
-                containerClassName="mb-8"
               />
 
               {product.brand ? (

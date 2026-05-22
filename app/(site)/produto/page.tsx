@@ -24,7 +24,7 @@ export default async function ProdutosPage() {
         />
 
         {products.length > 0 ? (
-          <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}

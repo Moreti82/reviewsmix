@@ -52,15 +52,15 @@ export function ProductCard({ product }: ProductCardProps) {
         </h3>
 
         {product.shortDescription ? (
-          <p className="mt-3 line-clamp-2 flex-1 text-sm leading-relaxed text-slate-600">
+          <p className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-slate-600">
             {product.shortDescription}
           </p>
         ) : null}
 
-        <div className="mt-5 flex justify-center lg:justify-start">
+        <div className="mt-5 flex justify-center lg:justify-end">
           <Link
             href={`/produto/${product.slug}`}
-            className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-indigo-500/25 transition-all hover:bg-indigo-700"
+            className="inline-flex items-center gap-2 rounded-full bg-[#9acd32] px-5 py-2.5 text-sm font-extrabold text-slate-950 shadow-lg shadow-lime-500/10 transition-all hover:bg-[#8bb829] hover:shadow-lime-500/20"
           >
             Onde comprar
             <ArrowRight className="size-4" />
