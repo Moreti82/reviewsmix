@@ -76,13 +76,13 @@ export default async function ProductPage({ params }: PageProps) {
           />
 
           <div className="mx-auto max-w-5xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <ProductGallery
-                images={product.images}
-                productName={product.name}
-                fallbackSeed={product.slug}
-              />
+            <ProductGallery
+              images={product.images}
+              productName={product.name}
+              fallbackSeed={product.slug}
+            />
 
+            <div className="mx-auto max-w-3xl text-center">
               {product.brand ? (
                 <p className="text-sm font-bold uppercase tracking-wider text-indigo-600">
                   {product.brand}

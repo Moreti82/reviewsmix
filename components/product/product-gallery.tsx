@@ -11,6 +11,10 @@ type ProductGalleryProps = {
   fallbackSeed: string;
 };
 
+const galleryContainerClass = "mb-8 w-full mx-auto";
+const singleImageClass = "max-w-3xl";
+const multiImageClass = "max-w-5xl gap-5";
+
 export function ProductGallery({
   images = [],
   productName,
@@ -18,25 +22,30 @@ export function ProductGallery({
 }: ProductGalleryProps) {
   const galleryImages = uniqueProductImages(images);
 
+  const imageSize = { width: 1200, height: 900 };
+
   if (galleryImages.length === 0) {
     return (
-      <SanityImage
-        alt={productName}
-        fallbackSeed={fallbackSeed}
-        aspect="product"
-        containerClassName="mb-8"
-      />
+      <div className={cn(galleryContainerClass, singleImageClass)}>
+        <SanityImage
+          alt={productName}
+          fallbackSeed={fallbackSeed}
+          aspect="product"
+          {...imageSize}
+        />
+      </div>
     );
   }
 
   if (galleryImages.length === 1) {
     return (
-      <div className="mb-8 w-full max-w-lg mx-auto">
+      <div className={cn(galleryContainerClass, singleImageClass)}>
         <SanityImage
           image={galleryImages[0]}
           alt={productName}
           fallbackSeed={fallbackSeed}
           aspect="product"
+          {...imageSize}
         />
       </div>
     );
@@ -45,7 +54,9 @@ export function ProductGallery({
   return (
     <div
       className={cn(
-        "mb-8 grid w-full max-w-3xl mx-auto gap-4",
+        galleryContainerClass,
+        multiImageClass,
+        "grid",
         galleryImages.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
       )}
     >
@@ -56,6 +67,7 @@ export function ProductGallery({
           alt={`${productName} - Imagem ${idx + 1}`}
           fallbackSeed={`${fallbackSeed}-${idx}`}
           aspect="product"
+          {...imageSize}
         />
       ))}
     </div>
