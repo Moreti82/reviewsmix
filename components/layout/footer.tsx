@@ -55,15 +55,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 space-y-4 border-t border-white/10 pt-8 text-center">
+        <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between text-center sm:text-left">
           <p className="text-sm text-slate-500">
             © {new Date().getFullYear()} ReviewsMix · Análises independentes
           </p>
 
-          <div className="mx-auto max-w-md space-y-1">
+          <div className="sm:text-right space-y-1">
             <p className="text-sm text-slate-400">
               Site desenvolvido por{" "}
-              <span className="font-bold text-indigo-400">DevFullCode</span>
+              <span className="font-bold text-slate-300">
+                <span className="text-indigo-400">D</span>ev<span className="text-indigo-400">F</span>ull<span className="text-indigo-400">C</span>ode
+              </span>
             </p>
             <p className="text-xs font-medium tracking-wide text-slate-500">
               Transformando Códigos em Soluções
