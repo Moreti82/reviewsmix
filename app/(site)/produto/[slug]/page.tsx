@@ -10,7 +10,7 @@ import { RatingBadge } from "@/components/product/rating-badge";
 import { SpecsTable } from "@/components/product/specs-table";
 import { JsonLd, productJsonLd } from "@/components/seo/json-ld";
 import { ProductGallery } from "@/components/product/product-gallery";
-import { getOgImageUrl } from "@/lib/sanity/image";
+import { getOgImageUrl, uniqueProductImages } from "@/lib/sanity/image";
 import {
   getPosts,
   getProductBySlug,
@@ -20,6 +20,9 @@ import {
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+/** Sempre busca imagens atualizadas do Sanity (evita HTML antigo em cache). */
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   const products = await getProducts();
@@ -77,7 +80,7 @@ export default async function ProductPage({ params }: PageProps) {
 
           <div className="mx-auto max-w-5xl">
             <ProductGallery
-              images={product.images}
+              images={uniqueProductImages(product.images)}
               productName={product.name}
               fallbackSeed={product.slug}
             />
@@ -108,7 +111,7 @@ export default async function ProductPage({ params }: PageProps) {
               ) : null}
 
               {product.shortDescription ? (
-                <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+                <p className="rich-text mx-auto mt-5 max-w-2xl text-lg text-slate-600">
                   {product.shortDescription}
                 </p>
               ) : null}

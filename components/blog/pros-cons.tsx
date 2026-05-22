@@ -22,10 +22,10 @@ export function ProsCons({ pros, cons }: ProsConsProps) {
             {pros.map((item) => (
               <li
                 key={item}
-                className="flex gap-2.5 text-sm leading-relaxed text-emerald-950"
+                className="flex gap-2.5 text-sm text-emerald-950"
               >
-                <span className="mt-0.5 font-bold text-emerald-500">+</span>
-                {item}
+                <span className="mt-0.5 shrink-0 font-bold text-emerald-500">+</span>
+                <span className="rich-text flex-1">{item}</span>
               </li>
             ))}
           </ul>
@@ -44,10 +44,10 @@ export function ProsCons({ pros, cons }: ProsConsProps) {
             {cons.map((item) => (
               <li
                 key={item}
-                className="flex gap-2.5 text-sm leading-relaxed text-rose-950"
+                className="flex gap-2.5 text-sm text-rose-950"
               >
-                <span className="mt-0.5 font-bold text-rose-500">−</span>
-                {item}
+                <span className="mt-0.5 shrink-0 font-bold text-rose-500">−</span>
+                <span className="rich-text flex-1">{item}</span>
               </li>
             ))}
           </ul>

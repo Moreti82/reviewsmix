@@ -12,25 +12,29 @@ const components: PortableTextComponents = {
       <h3 className="mt-8 text-xl font-semibold">{children}</h3>
     ),
     normal: ({ children }) => (
-      <p className="mt-4 leading-relaxed text-muted-foreground">{children}</p>
+      <p className="rich-text mt-4 text-muted-foreground">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="mt-6 border-l-4 border-primary/30 pl-4 italic text-muted-foreground">
+      <blockquote className="rich-text mt-6 border-l-4 border-primary/30 pl-4 italic text-muted-foreground">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+      <ul className="rich-text mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="mt-4 list-decimal space-y-2 pl-6 text-muted-foreground">
+      <ol className="rich-text mt-4 list-decimal space-y-2 pl-6 text-muted-foreground">
         {children}
       </ol>
     ),
+  },
+  listItem: {
+    bullet: ({ children }) => <li className="rich-text">{children}</li>,
+    number: ({ children }) => <li className="rich-text">{children}</li>,
   },
 };
 

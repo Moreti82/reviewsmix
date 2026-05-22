@@ -14,7 +14,7 @@ export function SpecsTable({ specs }: SpecsTableProps) {
               <th className="w-2/5 bg-indigo-50/60 px-5 py-4 text-left font-bold text-slate-800">
                 {spec.key}
               </th>
-              <td className="px-5 py-4 text-slate-600">{spec.value}</td>
+              <td className="rich-text px-5 py-4 text-slate-600">{spec.value}</td>
             </tr>
           ))}
         </tbody>

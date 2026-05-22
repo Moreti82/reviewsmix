@@ -68,7 +68,7 @@ export default async function HomePage() {
               <h2 className="text-3xl font-extrabold md:text-4xl">
                 Compare, leia e compre com confiança
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-slate-600">
+              <p className="rich-text mx-auto mt-5 max-w-xl text-slate-600">
                 Cada review inclui prós, contras, nota editorial e links diretos
                 para as lojas — com total transparência sobre afiliados.
               </p>

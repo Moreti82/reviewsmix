@@ -168,4 +168,21 @@
     box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.15);
     pointer-events: none;
   }
+
+  /* Parágrafos e listas de conteúdo editorial (Sanity, descrições, etc.) */
+  .rich-text {
+    @apply text-justify leading-relaxed hyphens-auto;
+  }
+
+  .prose-blog {
+    @apply text-slate-700;
+  }
+
+  .prose-blog :is(p, li, blockquote) {
+    @apply text-justify leading-relaxed hyphens-auto;
+  }
+
+  .prose-blog :is(h2, h3) {
+    @apply text-left text-foreground;
+  }
 }

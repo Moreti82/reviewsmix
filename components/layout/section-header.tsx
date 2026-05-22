@@ -38,7 +38,7 @@ export function SectionHeader({
         {label ? <p className="section-label mb-3">{label}</p> : null}
         <h2 className="text-3xl font-extrabold md:text-4xl">{title}</h2>
         {description ? (
-          <p className="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
+          <p className="rich-text mt-4 text-base text-slate-600 md:text-lg">
             {description}
           </p>
         ) : null}

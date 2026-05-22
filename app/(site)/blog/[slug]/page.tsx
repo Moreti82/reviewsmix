@@ -109,7 +109,7 @@ export default async function PostPage({ params }: PageProps) {
                   <RatingBadge rating={post.rating} size="lg" />
                 ) : null}
               </div>
-              <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-600">
+              <p className="rich-text mx-auto mt-5 max-w-2xl text-lg text-slate-600">
                 {post.excerpt}
               </p>
               <div className="mt-5 flex flex-wrap justify-center gap-4 text-sm text-slate-500">
@@ -134,9 +134,9 @@ export default async function PostPage({ params }: PageProps) {
                 <PostBody value={post.body} />
               </div>
               {post.verdict ? (
-                <div className="mt-10 rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white p-8 text-center">
-                  <p className="section-label mb-3">Veredito</p>
-                  <p className="text-lg leading-relaxed text-slate-700">
+                <div className="mt-10 rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white p-8">
+                  <p className="section-label mb-3 text-center">Veredito</p>
+                  <p className="rich-text text-lg text-slate-700">
                     {post.verdict}
                   </p>
                 </div>

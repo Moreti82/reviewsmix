@@ -20,7 +20,7 @@ export function PageHeader({
       {eyebrow ? <p className="section-label mb-4">{eyebrow}</p> : null}
       <h1 className="text-4xl font-extrabold md:text-5xl">{title}</h1>
       {description ? (
-        <p className="mt-5 text-lg leading-relaxed text-slate-600">
+        <p className="rich-text mt-5 text-lg text-slate-600">
           {description}
         </p>
       ) : null}

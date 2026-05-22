@@ -44,7 +44,7 @@ export function CategoryCard({ category, index = 0 }: CategoryCardProps) {
       </h3>
 
       {category.description ? (
-        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-slate-600">
+        <p className="rich-text mt-3 line-clamp-2 text-sm text-slate-600">
           {category.description}
         </p>
       ) : null}

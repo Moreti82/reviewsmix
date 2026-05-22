@@ -52,7 +52,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </h3>
 
         {product.shortDescription ? (
-          <p className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-slate-600">
+          <p className="rich-text mt-3 line-clamp-4 flex-1 text-sm text-slate-600">
             {product.shortDescription}
           </p>
         ) : null}

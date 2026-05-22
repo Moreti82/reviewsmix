@@ -18,7 +18,7 @@ export default function SobrePage() {
         />
 
         <div className="surface-card space-y-8 rounded-2xl p-8 text-center md:p-10">
-          <p className="leading-relaxed text-slate-600">
+          <p className="rich-text text-slate-600">
             O ReviewsMix publica análises detalhadas de produtos, com prós, contras e
             links para lojas parceiras. Nosso objetivo é informar — não empurrar
             compras desnecessárias.
@@ -27,7 +27,7 @@ export default function SobrePage() {
             <h2 className="text-xl font-bold text-slate-900">
               Política de afiliados
             </h2>
-            <p className="mt-3 leading-relaxed text-slate-600">
+            <p className="rich-text mt-3 text-slate-600">
               Alguns links neste site são de afiliado. Quando você compra através
               deles, podemos receber uma comissão sem custo extra para você. Isso
               ajuda a manter o site e não influencia nossa nota editorial.

@@ -76,7 +76,7 @@ export function PostCard({ post, featured = false, aspect }: PostCardProps) {
           </Link>
         </h3>
 
-        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-slate-600">
+        <p className="rich-text mt-3 line-clamp-3 flex-1 text-sm text-slate-600">
           {post.excerpt}
         </p>
 
