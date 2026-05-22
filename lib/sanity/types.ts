@@ -18,7 +18,8 @@ export type PurchaseLink = {
 };
 
 export type SanityImage = {
-  asset?: { _ref?: string; url?: string };
+  _key?: string;
+  asset?: { _ref?: string; _id?: string; url?: string };
   alt?: string;
 };
 

@@ -1,11 +1,20 @@
 import { groq } from "next-sanity";
 
+const imageFields = groq`
+  ...,
+  "asset": asset->{
+    _id,
+    url,
+    metadata { dimensions { width, height, aspectRatio } }
+  }
+`;
+
 const categoryFields = groq`
   _id,
   title,
   "slug": slug.current,
   description,
-  image
+  image { ${imageFields} }
 `;
 
 const purchaseLinkFields = groq`
@@ -26,7 +35,7 @@ const productFields = groq`
   priceRange,
   specs,
   purchaseLinks[]{ ${purchaseLinkFields} },
-  images,
+  images[]{ ${imageFields} },
   category->{ _id, title, "slug": slug.current }
 `;
 
@@ -36,7 +45,7 @@ export const postsQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    coverImage,
+    coverImage { ${imageFields} },
     rating,
     readingTime,
     publishedAt,
@@ -51,7 +60,7 @@ export const featuredPostsQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    coverImage,
+    coverImage { ${imageFields} },
     rating,
     readingTime,
     publishedAt,
@@ -65,7 +74,7 @@ export const postBySlugQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    coverImage,
+    coverImage { ${imageFields} },
     body,
     pros,
     cons,
@@ -110,7 +119,7 @@ export const postsByCategoryQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    coverImage,
+    coverImage { ${imageFields} },
     rating,
     readingTime,
     publishedAt,
@@ -133,7 +142,7 @@ export const searchPostsQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    coverImage,
+    coverImage { ${imageFields} },
     rating,
     readingTime,
     publishedAt,

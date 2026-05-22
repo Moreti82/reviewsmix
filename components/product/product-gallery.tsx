@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-
-import { getImageUrl } from "@/lib/sanity/image";
 import { SanityImage } from "@/components/shared/sanity-image";
+import { uniqueProductImages } from "@/lib/sanity/image";
 import type { SanityImage as SanityImageType } from "@/lib/sanity/types";
 import { cn } from "@/lib/utils";
 
@@ -19,9 +16,9 @@ export function ProductGallery({
   productName,
   fallbackSeed,
 }: ProductGalleryProps) {
-  const [activeIdx, setActiveIdx] = useState(0);
+  const galleryImages = uniqueProductImages(images);
 
-  if (!images || images.length === 0) {
+  if (galleryImages.length === 0) {
     return (
       <SanityImage
         alt={productName}
@@ -32,55 +29,35 @@ export function ProductGallery({
     );
   }
 
-  const activeImage = images[activeIdx] || images[0];
-
-  return (
-    <div className="mb-8 flex flex-col items-center">
-      {/* Imagem Principal */}
-      <div className="w-full max-w-lg">
+  if (galleryImages.length === 1) {
+    return (
+      <div className="mb-8 w-full max-w-lg mx-auto">
         <SanityImage
-          image={activeImage}
-          alt={`${productName} - Imagem ${activeIdx + 1}`}
-          fallbackSeed={`${fallbackSeed}-${activeIdx}`}
+          image={galleryImages[0]}
+          alt={productName}
+          fallbackSeed={fallbackSeed}
           aspect="product"
         />
       </div>
+    );
+  }
 
-      {/* Miniaturas (Thumbnails) */}
-      {images.length > 1 ? (
-        <div className="mt-4 flex flex-wrap justify-center gap-3">
-          {images.map((img, idx) => {
-            const thumbUrl =
-              getImageUrl(img, 160, 160) ??
-              `https://picsum.photos/seed/${encodeURIComponent(fallbackSeed)}-${idx}/160/160`;
-
-            return (
-              <button
-                key={idx}
-                onClick={() => setActiveIdx(idx)}
-                onMouseEnter={() => setActiveIdx(idx)}
-                className={cn(
-                  "relative overflow-hidden rounded-xl border bg-white p-1 transition-all duration-200 outline-none w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center",
-                  activeIdx === idx
-                    ? "border-indigo-600 ring-2 ring-indigo-500/20 shadow-md scale-105"
-                    : "border-slate-300 hover:border-slate-500 hover:scale-102"
-                )}
-                aria-label={`Visualizar imagem ${idx + 1} de ${productName}`}
-              >
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
-                    src={thumbUrl}
-                    alt={`${productName} miniatura ${idx + 1}`}
-                    fill
-                    sizes="80px"
-                    className="object-contain p-0.5 rounded-lg"
-                  />
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      ) : null}
+  return (
+    <div
+      className={cn(
+        "mb-8 grid w-full max-w-3xl mx-auto gap-4",
+        galleryImages.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
+      )}
+    >
+      {galleryImages.map((image, idx) => (
+        <SanityImage
+          key={image._key ?? image.asset?._id ?? image.asset?._ref ?? idx}
+          image={image}
+          alt={`${productName} - Imagem ${idx + 1}`}
+          fallbackSeed={`${fallbackSeed}-${idx}`}
+          aspect="product"
+        />
+      ))}
     </div>
   );
 }
