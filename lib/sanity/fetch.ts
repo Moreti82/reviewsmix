@@ -45,8 +45,8 @@ export async function getPosts(): Promise<Post[]> {
 
 export async function getFeaturedPosts(): Promise<Post[]> {
   const { data, ok } = await fetchFromSanity<Post[]>(featuredPostsQuery);
-  if (ok) return (data ?? []).slice(0, 3);
-  return mockPosts.filter((p) => p.featured).slice(0, 3);
+  if (ok) return (data ?? []).slice(0, 4);
+  return mockPosts.filter((p) => p.featured).slice(0, 4);
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {

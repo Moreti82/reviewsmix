@@ -18,9 +18,10 @@ function formatDate(iso?: string) {
 type PostCardProps = {
   post: Post;
   featured?: boolean;
+  aspect?: "video" | "square" | "wide" | "hero" | "product";
 };
 
-export function PostCard({ post, featured = false }: PostCardProps) {
+export function PostCard({ post, featured = false, aspect }: PostCardProps) {
   return (
     <article
       className={cn(
@@ -30,13 +31,14 @@ export function PostCard({ post, featured = false }: PostCardProps) {
     >
       <Link
         href={`/blog/${post.slug}`}
-        className={cn("relative block shrink-0", featured ? "lg:w-[42%]" : "")}
+        className={cn("relative block shrink-0 flex flex-col", featured ? "lg:w-[42%] lg:min-h-full" : "")}
       >
         <SanityImage
           image={post.coverImage}
           alt={post.title}
-          aspect={featured ? "hero" : "video"}
+          aspect={aspect ?? (featured ? "hero" : "video")}
           fallbackSeed={post.slug}
+          containerClassName="h-full w-full"
         />
         {post.rating != null ? (
           <div className="absolute right-4 top-4 z-10">

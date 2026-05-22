@@ -82,9 +82,8 @@ export default async function ProductPage({ params }: PageProps) {
               <SanityImage
                 image={mainImage}
                 alt={product.name}
-                aspect="product"
                 fallbackSeed={product.slug}
-                priority
+                aspect="product"
                 containerClassName="mb-8"
               />
 

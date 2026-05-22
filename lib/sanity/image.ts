@@ -15,8 +15,13 @@ export function getImageUrl(
   height = 450
 ): string | null {
   if (!image?.asset) return null;
+  return urlFor(image).width(width).height(height).fit("max").auto("format").url();
+}
 
-  return urlFor(image).width(width).height(height).fit("crop").auto("format").url();
+/** Returns the original image URL with no dimension or crop constraints. */
+export function getFullImageUrl(image?: SanityImage): string | null {
+  if (!image?.asset) return null;
+  return urlFor(image).auto("format").url();
 }
 
 export function getOgImageUrl(image?: SanityImage): string | null {

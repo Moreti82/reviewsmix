@@ -16,8 +16,6 @@ export default async function HomePage() {
     getCategories(),
   ]);
 
-  const [heroPost, ...otherFeatured] = featuredPosts;
-
   return (
     <>
       <HeroSection />
@@ -32,19 +30,11 @@ export default async function HomePage() {
               href="/blog"
             />
 
-            {heroPost ? (
-              <div className="mb-8">
-                <PostCard post={heroPost} featured />
-              </div>
-            ) : null}
-
-            {otherFeatured.length > 0 ? (
-              <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
-                {otherFeatured.map((post) => (
-                  <PostCard key={post._id} post={post} />
-                ))}
-              </div>
-            ) : null}
+            <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {featuredPosts.map((post) => (
+                <PostCard key={post._id} post={post} aspect="square" />
+              ))}
+            </div>
           </PageShell>
         </section>
       ) : null}

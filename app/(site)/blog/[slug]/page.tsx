@@ -86,7 +86,7 @@ export default async function PostPage({ params }: PageProps) {
             <SanityImage
               image={post.coverImage}
               alt={post.title}
-              aspect="wide"
+              aspect="hero"
               fallbackSeed={post.slug}
               priority
               containerClassName="mb-10"

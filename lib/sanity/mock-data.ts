@@ -153,7 +153,19 @@ export const mockPosts: Post[] = [
     rating: undefined,
     readingTime: 5,
     publishedAt: "2026-03-20T10:00:00.000Z",
-    featured: false,
+    featured: true,
+    category: { _id: "cat-3", title: "Casa inteligente", slug: "casa-inteligente" },
+  },
+  {
+    _id: "post-4",
+    title: "Melhores dispositivos de Casa Inteligente com Alexa em 2026",
+    slug: "melhores-dispositivos-casa-inteligente-2026",
+    excerpt:
+      "Análise dos principais gadgets compatíveis com a Alexa para transformar sua rotina doméstica com praticidade e economia.",
+    rating: 8.9,
+    readingTime: 7,
+    publishedAt: "2026-05-10T10:00:00.000Z",
+    featured: true,
     category: { _id: "cat-3", title: "Casa inteligente", slug: "casa-inteligente" },
   },
 ];

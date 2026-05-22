@@ -46,7 +46,7 @@ export const postsQuery = groq`
 `;
 
 export const featuredPostsQuery = groq`
-  *[_type == "post" && featured == true] | order(publishedAt desc)[0...3] {
+  *[_type == "post" && featured == true] | order(publishedAt desc)[0...4] {
     _id,
     title,
     "slug": slug.current,

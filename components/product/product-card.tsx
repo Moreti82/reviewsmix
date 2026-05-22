@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { RatingBadge } from "@/components/product/rating-badge";
 import { SanityImage } from "@/components/shared/sanity-image";
+import { RatingBadge } from "@/components/product/rating-badge";
 import type { Product } from "@/lib/sanity/types";
 
 type ProductCardProps = {
@@ -13,15 +13,15 @@ export function ProductCard({ product }: ProductCardProps) {
   const image = product.images?.[0];
 
   return (
-    <article className="group surface-card surface-card-hover flex h-full flex-col overflow-hidden">
-      <Link href={`/produto/${product.slug}`} className="relative block">
+    <article className="group surface-card surface-card-hover flex h-full flex-col">
+      {/* Image with lightbox */}
+      <div className="relative">
         <SanityImage
           image={image}
           alt={product.name}
-          aspect="product"
           fallbackSeed={product.slug}
+          aspect="product"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
         {product.rating != null ? (
           <div className="absolute right-4 top-4 z-10">
             <RatingBadge rating={product.rating} size="sm" />
@@ -32,8 +32,9 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.priceRange}
           </span>
         ) : null}
-      </Link>
+      </div>
 
+      {/* Content */}
       <div className="flex flex-1 flex-col p-6 text-center lg:text-left">
         {product.brand ? (
           <p className="text-xs font-bold uppercase tracking-wider text-indigo-600">
