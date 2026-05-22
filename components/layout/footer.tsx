@@ -55,8 +55,10 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between text-center sm:text-left">
-          <p className="text-sm text-slate-500">
+        <div className="mt-14 grid grid-cols-1 gap-6 border-t border-white/10 pt-8 sm:grid-cols-3 sm:items-center text-center">
+          <div className="hidden sm:block" />
+          
+          <p className="text-sm text-slate-500 sm:text-center">
             © {new Date().getFullYear()} ReviewsMix · Análises independentes
           </p>
 
