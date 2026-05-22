@@ -28,7 +28,7 @@ async function fetchFromSanity<T>(
   if (!isSanityConfigured) return { data: null, ok: false };
   try {
     const data = await sanityClient.fetch<T>(query, params, {
-      next: { revalidate: 60 },
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 60 },
     });
     return { data, ok: true };
   } catch (error) {

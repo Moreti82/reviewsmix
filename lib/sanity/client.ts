@@ -6,7 +6,7 @@ export const sanityClient = createClient({
   projectId: projectId || "placeholder",
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: process.env.NODE_ENV === "development" ? false : true,
   perspective: "published",
   stega: {
     enabled: false,
