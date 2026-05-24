@@ -97,10 +97,10 @@ export function ProductGallery({
                 role="tab"
                 onClick={() => setActiveIdx(idx)}
                 className={cn(
-                  "relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 bg-white p-1 outline-none transition-all duration-200 sm:h-24 sm:w-24",
+                  "relative h-20 w-20 shrink-0 overflow-hidden rounded-md border-2 bg-white p-1 outline-none transition-all duration-200 sm:h-24 sm:w-24",
                   isActive
-                    ? "scale-105 border-indigo-600 shadow-lg ring-2 ring-indigo-500/30"
-                    : "border-slate-200 hover:border-indigo-400 hover:shadow-md"
+                    ? "scale-105 border-primary shadow-lg ring-2 ring-primary/25"
+                    : "border-slate-200 hover:border-teal-300 hover:shadow-md"
                 )}
                 aria-label={`Foto ${idx + 1} de ${images.length}`}
                 aria-selected={isActive}

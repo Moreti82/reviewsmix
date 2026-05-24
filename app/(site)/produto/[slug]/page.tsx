@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: PageProps) {
     <>
       <JsonLd data={productJsonLd(product)} />
 
-      <div className="py-12 md:py-16">
+      <div className="bg-white py-12 md:py-16">
         <PageShell wide>
           <Breadcrumbs
             items={[
@@ -78,90 +78,89 @@ export default async function ProductPage({ params }: PageProps) {
             ]}
           />
 
-          <div className="mx-auto max-w-5xl">
-            <ProductGallery
-              images={uniqueProductImages(product.images)}
-              productName={product.name}
-              fallbackSeed={product.slug}
-            />
+          <header className="mx-auto mb-10 max-w-4xl text-center">
+            {product.brand ? (
+              <p className="text-sm font-bold uppercase tracking-wider text-primary">
+                {product.brand}
+              </p>
+            ) : null}
 
-            <div className="mx-auto max-w-3xl text-center">
-              {product.brand ? (
-                <p className="text-sm font-bold uppercase tracking-wider text-indigo-600">
-                  {product.brand}
-                </p>
-              ) : null}
-
-              <div className="mt-3 flex flex-col items-center gap-4">
-                <h1 className="text-3xl font-extrabold md:text-4xl lg:text-5xl">
-                  {product.name}
-                </h1>
-                {product.rating != null ? (
-                  <RatingBadge rating={product.rating} size="lg" />
-                ) : null}
-              </div>
-
-              {product.category ? (
-                <Link
-                  href={`/categoria/${product.category.slug}`}
-                  className="mt-3 inline-block text-sm font-semibold text-indigo-600 hover:underline"
-                >
-                  {product.category.title}
-                </Link>
-              ) : null}
-
-              {product.shortDescription ? (
-                <p className="rich-text mx-auto mt-5 max-w-2xl text-lg text-slate-600">
-                  {product.shortDescription}
-                </p>
-              ) : null}
-
-              {product.priceRange ? (
-                <p className="mt-4 text-2xl font-extrabold text-slate-900">
-                  {product.priceRange}
-                </p>
+            <div className="mt-3 flex flex-col items-center gap-4">
+              <h1 className="text-3xl font-extrabold md:text-4xl lg:text-5xl">
+                {product.name}
+              </h1>
+              {product.rating != null ? (
+                <RatingBadge rating={product.rating} size="lg" />
               ) : null}
             </div>
 
-            <div className="mx-auto mt-12 grid max-w-4xl gap-10 lg:grid-cols-5">
+            {product.category ? (
+              <Link
+                href={`/categoria/${product.category.slug}`}
+                className="mt-3 inline-block text-sm font-semibold text-primary hover:underline"
+              >
+                {product.category.title}
+              </Link>
+            ) : null}
+
+            {product.shortDescription ? (
+              <p className="rich-text mx-auto mt-5 max-w-2xl text-lg text-slate-600">
+                {product.shortDescription}
+              </p>
+            ) : null}
+
+            {product.priceRange ? (
+              <p className="mt-4 text-2xl font-extrabold text-slate-900">
+                {product.priceRange}
+              </p>
+            ) : null}
+          </header>
+
+          <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-10 lg:gap-y-12">
+            <div className="min-w-0 lg:col-span-9">
+              <ProductGallery
+                images={uniqueProductImages(product.images)}
+                productName={product.name}
+                fallbackSeed={product.slug}
+              />
+            </div>
+
+            <aside className="mt-10 flex justify-center lg:col-span-3 lg:col-start-10 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:justify-end">
+              <div className="lg:sticky lg:top-24 lg:z-10 lg:w-full lg:max-w-[18rem]">
+                {product.purchaseLinks && product.purchaseLinks.length > 0 ? (
+                  <PurchaseLinks links={product.purchaseLinks} />
+                ) : (
+                  <div className="surface-card border-dashed p-6 text-center text-sm text-slate-500">
+                    Links de compra ainda não cadastrados.
+                  </div>
+                )}
+              </div>
+            </aside>
+
+            <div className="mt-12 space-y-12 lg:col-span-9 lg:row-start-2 lg:mt-0">
               {product.specs && product.specs.length > 0 ? (
-                <section className="lg:col-span-3">
+                <section>
                   <h2 className="mb-5 text-center text-xl font-bold lg:text-left">
                     Especificações
                   </h2>
                   <SpecsTable specs={product.specs} />
                 </section>
-              ) : (
-                <div className="lg:col-span-3" />
-              )}
+              ) : null}
 
-              <aside className="lg:col-span-2">
-                {product.purchaseLinks && product.purchaseLinks.length > 0 ? (
-                  <PurchaseLinks
-                    links={product.purchaseLinks}
-                    className="sticky top-24"
-                  />
-                ) : (
-                  <div className="surface-card rounded-2xl border-dashed p-6 text-center text-sm text-slate-500">
-                    Links de compra ainda não cadastrados.
+              {relatedPosts.length > 0 ? (
+                <section className="border-t border-slate-200 pt-16">
+                  <h2 className="text-center text-2xl font-extrabold lg:text-left">
+                    Reviews relacionados
+                  </h2>
+                  <div className="mt-8 grid gap-8 md:grid-cols-2">
+                    {relatedPosts.map((post) => (
+                      <PostCard key={post._id} post={post} />
+                    ))}
                   </div>
-                )}
-              </aside>
+                </section>
+              ) : null}
             </div>
           </div>
-
-          {relatedPosts.length > 0 ? (
-            <section className="mx-auto mt-20 max-w-5xl border-t border-indigo-100 pt-16">
-              <h2 className="text-center text-2xl font-extrabold">
-                Reviews relacionados
-              </h2>
-              <div className="mt-8 grid gap-8 md:grid-cols-2">
-                {relatedPosts.map((post) => (
-                  <PostCard key={post._id} post={post} />
-                ))}
-              </div>
-            </section>
-          ) : null}
         </PageShell>
       </div>
     </>

@@ -15,12 +15,12 @@ export default async function ProdutosPage() {
   const products = await getProducts();
 
   return (
-    <section className="border-b border-indigo-100 bg-hero py-16 md:py-20">
+    <section className="border-b border-slate-200 bg-hero py-16 md:py-20">
       <PageShell wide>
         <PageHeader
           eyebrow="Catálogo"
           title="Produtos"
-          description="Especificações, notas e links para comprar nas lojas parceiras."
+          description="Fichas objetivas com especificações, notas e caminhos de compra."
         />
 
         {products.length > 0 ? (

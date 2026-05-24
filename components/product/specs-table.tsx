@@ -10,8 +10,8 @@ export function SpecsTable({ specs }: SpecsTableProps) {
       <table className="w-full text-sm">
         <tbody>
           {specs.map((spec) => (
-            <tr key={spec.key} className="border-b border-indigo-50 last:border-0">
-              <th className="w-2/5 bg-indigo-50/60 px-5 py-4 text-left font-bold text-slate-800">
+            <tr key={spec.key} className="border-b border-slate-100 last:border-0">
+              <th className="w-2/5 bg-slate-50 px-5 py-4 text-left font-bold text-slate-800">
                 {spec.key}
               </th>
               <td className="rich-text px-5 py-4 text-slate-600">{spec.value}</td>

@@ -32,7 +32,7 @@ export function Breadcrumbs({ items, align = "center" }: BreadcrumbsProps) {
                 <ChevronRight className="size-3.5 shrink-0 opacity-40" />
               ) : null}
               {item.href && !isLast ? (
-                <Link href={item.href} className="hover:text-indigo-600">
+                <Link href={item.href} className="hover:text-primary">
                   {item.label}
                 </Link>
               ) : (

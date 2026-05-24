@@ -11,9 +11,9 @@ const categoryIcons: Record<string, typeof Headphones> = {
 };
 
 const accents = [
-  "from-indigo-500 to-violet-600",
-  "from-violet-500 to-purple-600",
-  "from-blue-500 to-indigo-600",
+  "bg-teal-600",
+  "bg-blue-600",
+  "bg-orange-500",
 ];
 
 type CategoryCardProps = {
@@ -28,18 +28,18 @@ export function CategoryCard({ category, index = 0 }: CategoryCardProps) {
   return (
     <Link
       href={`/categoria/${category.slug}`}
-      className="group surface-card surface-card-hover relative flex h-full flex-col items-center overflow-hidden p-8 text-center"
+      className="group surface-card surface-card-hover relative flex h-full flex-col items-center overflow-hidden bg-white p-8 text-center"
     >
       <div
         className={cn(
-          "flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-lg transition-transform duration-300 group-hover:scale-110",
+          "flex size-14 items-center justify-center rounded-md text-white shadow-lg transition-transform duration-300 group-hover:scale-105",
           accent
         )}
       >
-        <Icon className="size-8" />
+        <Icon className="size-7" />
       </div>
 
-      <h3 className="mt-6 text-xl font-bold text-slate-900 transition-colors group-hover:text-indigo-600">
+      <h3 className="mt-6 text-xl font-bold text-slate-900 transition-colors group-hover:text-primary">
         {category.title}
       </h3>
 
@@ -49,7 +49,7 @@ export function CategoryCard({ category, index = 0 }: CategoryCardProps) {
         </p>
       ) : null}
 
-      <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-indigo-600">
+      <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-primary">
         Explorar
         <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </span>

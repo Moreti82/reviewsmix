@@ -18,9 +18,11 @@ export function PageHeader({
       className={`mb-12 ${centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}`}
     >
       {eyebrow ? <p className="section-label mb-4">{eyebrow}</p> : null}
-      <h1 className="text-4xl font-extrabold md:text-5xl">{title}</h1>
+      <h1 className="text-4xl font-extrabold leading-tight md:text-5xl">
+        {title}
+      </h1>
       {description ? (
-        <p className="rich-text mt-5 text-lg text-slate-600">
+        <p className="rich-text mt-5 text-lg text-slate-600 md:text-xl">
           {description}
         </p>
       ) : null}

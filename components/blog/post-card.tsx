@@ -25,13 +25,16 @@ export function PostCard({ post, featured = false, aspect }: PostCardProps) {
   return (
     <article
       className={cn(
-        "group surface-card surface-card-hover flex h-full flex-col overflow-hidden",
+        "group surface-card surface-card-hover flex h-full flex-col overflow-hidden bg-white",
         featured && "lg:flex-row lg:items-stretch"
       )}
     >
       <Link
         href={`/blog/${post.slug}`}
-        className={cn("relative block shrink-0 flex flex-col", featured ? "lg:w-[42%] lg:min-h-full" : "")}
+        className={cn(
+          "relative block flex shrink-0 flex-col",
+          featured ? "lg:min-h-full lg:w-[42%]" : ""
+        )}
       >
         <SanityImage
           image={post.coverImage}
@@ -56,7 +59,7 @@ export function PostCard({ post, featured = false, aspect }: PostCardProps) {
         {post.category ? (
           <Link
             href={`/categoria/${post.category.slug}`}
-            className="text-xs font-bold uppercase tracking-wider text-indigo-600 hover:underline"
+            className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
           >
             {post.category.title}
           </Link>
@@ -70,13 +73,13 @@ export function PostCard({ post, featured = false, aspect }: PostCardProps) {
         >
           <Link
             href={`/blog/${post.slug}`}
-            className="transition-colors hover:text-indigo-600"
+            className="transition-colors hover:text-primary"
           >
             {post.title}
           </Link>
         </h3>
 
-        <p className="rich-text mt-3 line-clamp-3 flex-1 text-sm text-slate-600">
+        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-slate-600">
           {post.excerpt}
         </p>
 
@@ -97,7 +100,7 @@ export function PostCard({ post, featured = false, aspect }: PostCardProps) {
           </div>
           <Link
             href={`/blog/${post.slug}`}
-            className="font-bold text-indigo-600 hover:underline"
+            className="font-bold text-primary hover:underline"
           >
             Ler review →
           </Link>

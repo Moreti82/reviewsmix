@@ -48,30 +48,30 @@
 }
 
 :root {
-  --background: #f4f6fb;
-  --foreground: #0f172a;
+  --background: #f7f9fb;
+  --foreground: #111827;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #111827;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #4f46e5;
+  --popover-foreground: #111827;
+  --primary: #0f766e;
   --primary-foreground: #ffffff;
-  --secondary: #e8ecf8;
-  --secondary-foreground: #1e293b;
-  --muted: #eef1f8;
-  --muted-foreground: #64748b;
-  --accent: #e0e7ff;
-  --accent-foreground: #3730a3;
+  --secondary: #e9eef5;
+  --secondary-foreground: #1f2937;
+  --muted: #edf2f7;
+  --muted-foreground: #667085;
+  --accent: #fff1e7;
+  --accent-foreground: #9a3412;
   --destructive: #ef4444;
-  --border: #d8deeb;
-  --input: #d8deeb;
-  --ring: #6366f1;
-  --radius: 1rem;
-  --gradient-brand: linear-gradient(135deg, #4f46e5 0%, #7c3aed 45%, #2563eb 100%);
-  --gradient-hero: linear-gradient(180deg, #eef2ff 0%, #f4f6fb 55%, #f4f6fb 100%);
-  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8faff 100%);
-  --shadow-card: 0 4px 24px -4px rgb(79 70 229 / 0.12), 0 2px 8px -2px rgb(15 23 42 / 0.06);
-  --shadow-card-hover: 0 20px 40px -12px rgb(79 70 229 / 0.22), 0 8px 16px -8px rgb(15 23 42 / 0.1);
+  --border: #d9e2ec;
+  --input: #d9e2ec;
+  --ring: #14b8a6;
+  --radius: 0.5rem;
+  --gradient-brand: linear-gradient(135deg, #0f766e 0%, #2563eb 52%, #f97316 100%);
+  --gradient-hero: linear-gradient(180deg, #f6fbfa 0%, #f7f9fb 58%, #ffffff 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --shadow-card: 0 14px 34px -24px rgb(17 24 39 / 0.35), 0 2px 10px -6px rgb(17 24 39 / 0.16);
+  --shadow-card-hover: 0 24px 50px -28px rgb(15 118 110 / 0.45), 0 10px 20px -14px rgb(17 24 39 / 0.22);
 }
 
 @layer base {
@@ -119,16 +119,17 @@
   }
 
   .bg-mesh {
-    background-color: transparent;
+    background-color: rgb(247 249 251 / 0.9);
     background-image:
-      radial-gradient(ellipse 80% 60% at 50% -10%, rgb(99 102 241 / 0.22), transparent),
-      radial-gradient(ellipse 50% 40% at 100% 0%, rgb(124 58 237 / 0.12), transparent),
-      radial-gradient(ellipse 40% 30% at 0% 100%, rgb(37 99 235 / 0.1), transparent);
+      linear-gradient(90deg, rgb(15 118 110 / 0.06) 1px, transparent 1px),
+      linear-gradient(180deg, rgb(37 99 235 / 0.05) 1px, transparent 1px),
+      linear-gradient(135deg, rgb(15 118 110 / 0.12), transparent 34%, rgb(249 115 22 / 0.1));
+    background-size: 44px 44px, 44px 44px, 100% 100%;
   }
 
   .surface-card {
-    border-radius: 1.25rem;
-    border: 1px solid rgb(216 222 235 / 0.9);
+    border-radius: 0.5rem;
+    border: 1px solid rgb(217 226 236 / 0.95);
     background: var(--gradient-card);
     box-shadow: var(--shadow-card);
   }
@@ -138,25 +139,25 @@
   }
 
   .surface-card-hover:hover {
-    transform: translateY(-4px);
-    border-color: rgb(99 102 241 / 0.35);
+    transform: translateY(-3px);
+    border-color: rgb(20 184 166 / 0.35);
     box-shadow: var(--shadow-card-hover);
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-widest;
-    border-color: rgb(99 102 241 / 0.25);
-    background: rgb(99 102 241 / 0.08);
-    color: #4338ca;
+    @apply inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-xs font-bold uppercase tracking-widest;
+    border-color: rgb(15 118 110 / 0.22);
+    background: rgb(15 118 110 / 0.08);
+    color: #0f766e;
   }
 
   .section-label {
-    @apply text-xs font-bold uppercase tracking-[0.22em];
-    color: #6366f1;
+    @apply text-xs font-bold uppercase tracking-[0.2em];
+    color: #0f766e;
   }
 
   .img-frame {
-    @apply relative overflow-hidden rounded-2xl;
+    @apply relative overflow-hidden rounded-lg;
     box-shadow: var(--shadow-card);
   }
 
@@ -169,9 +170,8 @@
     pointer-events: none;
   }
 
-  /* Parágrafos e listas de conteúdo editorial (Sanity, descrições, etc.) */
   .rich-text {
-    @apply text-justify leading-relaxed hyphens-auto;
+    @apply leading-relaxed;
   }
 
   .prose-blog {
@@ -179,7 +179,7 @@
   }
 
   .prose-blog :is(p, li, blockquote) {
-    @apply text-justify leading-relaxed hyphens-auto;
+    @apply leading-relaxed;
   }
 
   .prose-blog :is(h2, h3) {

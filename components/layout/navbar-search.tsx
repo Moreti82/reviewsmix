@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -44,9 +43,13 @@ export function NavbarSearch() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Buscar"
-        className="rounded-full border border-border/70 bg-background/80 p-2.5 shadow-sm transition-all hover:border-primary/30 hover:bg-accent"
+        className="inline-flex h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-600 shadow-sm transition-all hover:border-teal-200 hover:text-primary"
       >
-        <Search size={18} />
+        <Search className="size-4" />
+        <span className="hidden sm:inline">Buscar</span>
+        <kbd className="hidden rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] text-slate-500 md:inline">
+          Ctrl K
+        </kbd>
       </button>
 
       {open ? (
@@ -67,7 +70,7 @@ export function NavbarSearch() {
       >
         <form
           onSubmit={handleSubmit}
-          className="overflow-hidden rounded-2xl border border-border/70 bg-background shadow-2xl shadow-primary/10"
+          className="overflow-hidden rounded-lg border border-border/70 bg-background shadow-2xl shadow-primary/10"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center gap-3 px-5">
@@ -83,7 +86,7 @@ export function NavbarSearch() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               aria-label="Fechar busca"
             >
               <X className="size-4" />

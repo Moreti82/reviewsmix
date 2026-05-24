@@ -18,10 +18,10 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection />
+      <HeroSection featuredPost={featuredPosts[0]} />
 
       {featuredPosts.length > 0 ? (
-        <section className="py-16 md:py-24">
+        <section className="bg-white py-16 md:py-24">
           <PageShell wide>
             <SectionHeader
               label="Destaques"
@@ -40,7 +40,7 @@ export default async function HomePage() {
       ) : null}
 
       {categories.length > 0 ? (
-        <section className="border-y border-indigo-100 bg-white py-16 md:py-24">
+        <section className="border-y border-slate-200 bg-slate-50 py-16 md:py-24">
           <PageShell wide>
             <SectionHeader
               label="Explorar"
@@ -61,31 +61,35 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <section className="py-16 md:py-24">
+      <section className="bg-white py-16 md:py-24">
         <PageShell wide>
-          <div className="surface-card relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-10 text-center md:p-14">
-              <p className="section-label mb-4">Pronto para comprar?</p>
-              <h2 className="text-3xl font-extrabold md:text-4xl">
-                Compare, leia e compre com confiança
-              </h2>
-              <p className="rich-text mx-auto mt-5 max-w-xl text-slate-600">
-                Cada review inclui prós, contras, nota editorial e links diretos
-                para as lojas — com total transparência sobre afiliados.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="surface-card relative mx-auto max-w-5xl overflow-hidden p-8 md:p-10">
+            <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <p className="section-label mb-4">Pronto para comprar?</p>
+                <h2 className="max-w-2xl text-3xl font-extrabold md:text-4xl">
+                  Compare, leia e compre com confiança
+                </h2>
+                <p className="rich-text mt-5 max-w-2xl text-slate-600">
+                  Cada review inclui prós, contras, nota editorial e links
+                  diretos para as lojas, com transparência sobre afiliados.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 md:justify-end">
                 <Link
                   href="/produto"
-                  className="inline-flex h-12 items-center rounded-full bg-indigo-600 px-8 text-sm font-bold text-white shadow-xl shadow-indigo-500/30 transition-all hover:bg-indigo-700"
+                  className="inline-flex h-12 items-center rounded-md bg-primary px-6 text-sm font-bold text-white shadow-xl shadow-teal-700/20 transition-all hover:bg-teal-800"
                 >
-                  Ver catálogo de produtos
+                  Ver catálogo
                 </Link>
                 <Link
                   href="/sobre"
-                  className="inline-flex h-12 items-center rounded-full border-2 border-indigo-200 bg-white px-8 text-sm font-bold text-indigo-700 transition-colors hover:bg-indigo-50"
+                  className="inline-flex h-12 items-center rounded-md border border-slate-300 bg-white px-6 text-sm font-bold text-slate-800 transition-colors hover:bg-slate-50"
                 >
-                  Nossa metodologia
+                  Metodologia
                 </Link>
               </div>
+            </div>
           </div>
         </PageShell>
       </section>

@@ -46,7 +46,7 @@ export function SectionHeader({
       {href ? (
         <Link
           href={href}
-          className="inline-flex shrink-0 items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all hover:bg-indigo-700"
+          className="inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-700/20 transition-all hover:bg-teal-800"
         >
           {linkLabel}
           <ArrowRight className="size-4" />

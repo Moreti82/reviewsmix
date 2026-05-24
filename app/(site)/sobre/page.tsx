@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 
 export default function SobrePage() {
   return (
-    <section className="border-b border-indigo-100 bg-hero py-16 md:py-20">
+    <section className="border-b border-slate-200 bg-hero py-16 md:py-20">
       <PageShell narrow>
         <PageHeader
           title="Sobre o ReviewsMix"
           description="Reviews independentes para ajudar você a comprar melhor."
         />
 
-        <div className="surface-card space-y-8 rounded-2xl p-8 text-center md:p-10">
+        <div className="surface-card space-y-8 bg-white p-8 text-center md:p-10">
           <p className="rich-text text-slate-600">
             O ReviewsMix publica análises detalhadas de produtos, com prós, contras e
             links para lojas parceiras. Nosso objetivo é informar — não empurrar

@@ -26,7 +26,7 @@ export default async function BuscaPage({ searchParams }: PageProps) {
   const hasResults = posts.length > 0 || products.length > 0;
 
   return (
-    <section className="border-b border-indigo-100 bg-hero py-16 md:py-20">
+    <section className="border-b border-slate-200 bg-hero py-16 md:py-20">
       <PageShell wide>
         <PageHeader
           eyebrow="Busca"

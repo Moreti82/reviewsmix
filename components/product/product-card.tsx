@@ -13,8 +13,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const image = product.images?.[0];
 
   return (
-    <article className="group surface-card surface-card-hover flex h-full flex-col">
-      {/* Image with lightbox */}
+    <article className="group surface-card surface-card-hover flex h-full flex-col overflow-hidden bg-white">
       <div className="relative">
         <SanityImage
           image={image}
@@ -28,16 +27,15 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         ) : null}
         {product.priceRange ? (
-          <span className="absolute bottom-4 left-4 z-10 rounded-full bg-white/95 px-4 py-1.5 text-sm font-bold text-slate-900 shadow-lg backdrop-blur-sm">
+          <span className="absolute bottom-4 left-4 z-10 rounded-md bg-white/95 px-3 py-1.5 text-sm font-bold text-slate-900 shadow-lg backdrop-blur-sm">
             {product.priceRange}
           </span>
         ) : null}
       </div>
 
-      {/* Content */}
       <div className="flex flex-1 flex-col p-6 text-center lg:text-left">
         {product.brand ? (
-          <p className="text-xs font-bold uppercase tracking-wider text-indigo-600">
+          <p className="text-xs font-bold uppercase tracking-wider text-primary">
             {product.brand}
           </p>
         ) : null}
@@ -45,14 +43,14 @@ export function ProductCard({ product }: ProductCardProps) {
         <h3 className="mt-2 text-xl font-bold text-slate-900">
           <Link
             href={`/produto/${product.slug}`}
-            className="transition-colors hover:text-indigo-600"
+            className="transition-colors hover:text-primary"
           >
             {product.name}
           </Link>
         </h3>
 
         {product.shortDescription ? (
-          <p className="rich-text mt-3 line-clamp-4 flex-1 text-sm text-slate-600">
+          <p className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-slate-600">
             {product.shortDescription}
           </p>
         ) : null}
@@ -60,7 +58,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="mt-5 flex justify-center lg:justify-end">
           <Link
             href={`/produto/${product.slug}`}
-            className="inline-flex items-center gap-2 rounded-full bg-[#9acd32] px-5 py-2.5 text-sm font-extrabold text-slate-950 shadow-lg shadow-lime-500/10 transition-all hover:bg-[#8bb829] hover:shadow-lime-500/20"
+            className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-700/20 transition-all hover:bg-teal-800"
           >
             Onde comprar
             <ArrowRight className="size-4" />

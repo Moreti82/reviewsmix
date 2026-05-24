@@ -25,9 +25,9 @@ export function ImageLightbox({ src, alt, children }: ImageLightboxProps) {
       >
         {children}
         {/* Hover overlay hint */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-2xl bg-black/0 opacity-0 transition-all duration-300 group-hover/lb:bg-black/15 group-hover/lb:opacity-100">
-          <div className="flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-slate-800 shadow-lg backdrop-blur-sm border border-slate-100">
-            <ZoomIn className="size-4 text-indigo-600" />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 opacity-0 transition-all duration-300 group-hover/lb:bg-black/15 group-hover/lb:opacity-100">
+          <div className="flex items-center gap-2 rounded-md border border-slate-100 bg-white/95 px-4 py-2 text-sm font-semibold text-slate-800 shadow-lg backdrop-blur-sm">
+            <ZoomIn className="size-4 text-primary" />
             Ver imagem completa
           </div>
         </div>
@@ -48,7 +48,7 @@ export function ImageLightbox({ src, alt, children }: ImageLightboxProps) {
             <img
               src={src}
               alt={alt}
-              className="block max-h-[85vh] max-w-[85vw] rounded-2xl object-contain shadow-2xl border-2 border-white/10"
+              className="block max-h-[85vh] max-w-[85vw] rounded-lg border-2 border-white/10 object-contain shadow-2xl"
               style={{ width: "auto", height: "auto" }}
             />
           </div>
@@ -68,4 +68,3 @@ export function ImageLightbox({ src, alt, children }: ImageLightboxProps) {
     </>
   );
 }
-

@@ -46,7 +46,7 @@ export default async function CategoryPage({ params }: PageProps) {
   ]);
 
   return (
-    <section className="border-b border-indigo-100 bg-hero py-16 md:py-20">
+    <section className="border-b border-slate-200 bg-hero py-16 md:py-20">
       <PageShell wide>
         <Breadcrumbs
           items={[

@@ -12,8 +12,7 @@ export function PageBanner({ className }: PageBannerProps) {
         className
       )}
     >
-      <div className="absolute inset-0 bg-dot-pattern opacity-30" />
-      <div className="absolute -right-16 top-0 size-48 rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-50/70 via-white/20 to-orange-50/60" />
     </div>
   );
 }

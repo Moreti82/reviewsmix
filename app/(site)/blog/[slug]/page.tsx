@@ -72,7 +72,7 @@ export default async function PostPage({ params }: PageProps) {
     <>
       <JsonLd data={articleJsonLd(post)} />
 
-      <article className="py-12 md:py-16">
+      <article className="bg-white py-12 md:py-16">
         <PageShell wide>
           <Breadcrumbs
             items={[
@@ -96,7 +96,7 @@ export default async function PostPage({ params }: PageProps) {
               {post.category ? (
                 <Link
                   href={`/categoria/${post.category.slug}`}
-                  className="text-sm font-bold uppercase tracking-wider text-indigo-600 hover:underline"
+                  className="text-sm font-bold uppercase tracking-wider text-primary hover:underline"
                 >
                   {post.category.title}
                 </Link>
@@ -134,7 +134,7 @@ export default async function PostPage({ params }: PageProps) {
                 <PostBody value={post.body} />
               </div>
               {post.verdict ? (
-                <div className="mt-10 rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white p-8">
+                <div className="mt-10 rounded-lg border border-teal-200 bg-gradient-to-br from-teal-50 to-white p-8">
                   <p className="section-label mb-3 text-center">Veredito</p>
                   <p className="rich-text text-lg text-slate-700">
                     {post.verdict}
@@ -145,7 +145,7 @@ export default async function PostPage({ params }: PageProps) {
           </div>
 
           {post.products && post.products.length > 0 ? (
-            <section className="mx-auto mt-20 max-w-5xl border-t border-indigo-100 pt-16">
+            <section className="mx-auto mt-20 max-w-5xl border-t border-slate-200 pt-16">
               <h2 className="text-center text-2xl font-extrabold">
                 Produtos deste review
               </h2>
@@ -158,7 +158,7 @@ export default async function PostPage({ params }: PageProps) {
           ) : null}
 
           {relatedPosts.length > 0 ? (
-            <section className="mx-auto mt-20 max-w-5xl border-t border-indigo-100 pt-16">
+            <section className="mx-auto mt-20 max-w-5xl border-t border-slate-200 pt-16">
               <h2 className="text-center text-2xl font-extrabold">
                 Reviews relacionados
               </h2>

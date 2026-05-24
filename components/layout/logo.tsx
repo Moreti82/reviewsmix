@@ -19,15 +19,15 @@ export function Logo({ className, inverted = false }: LogoProps) {
     >
       <span
         className={cn(
-          "flex size-8 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[oklch(0.55_0.2_290)] text-primary-foreground shadow-md shadow-primary/30 transition-transform group-hover:scale-105",
-          inverted && "from-white to-white/80 text-primary"
+          "flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-md shadow-primary/20 transition-transform group-hover:scale-105",
+          inverted && "bg-white text-primary"
         )}
       >
         <Sparkles className="size-4" />
       </span>
       <span className={cn(inverted ? "text-white" : "text-foreground")}>
         Reviews
-        <span className={cn(inverted ? "text-white/80" : "text-gradient")}>
+        <span className={cn(inverted ? "text-white/80" : "text-primary")}>
           Mix
         </span>
       </span>
