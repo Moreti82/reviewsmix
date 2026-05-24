@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 
 import { Logo } from "@/components/layout/logo";
@@ -10,6 +11,27 @@ const footerLinks = [
   { href: "/busca", label: "Busca" },
   { href: "/sobre", label: "Sobre" },
 ];
+
+const DEVFULLCODE_URL = "https://devfullcode.com";
+
+function DevFullCodeLink({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={DEVFULLCODE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {children}
+    </a>
+  );
+}
 
 export function Footer() {
   return (
@@ -62,18 +84,26 @@ export function Footer() {
             © {new Date().getFullYear()} ReviewsMix · Análises independentes
           </p>
 
-          <div className="sm:text-right space-y-1">
+          <div className="space-y-1 sm:text-right">
             <p className="text-sm text-slate-400">
               Site desenvolvido por{" "}
-              <span className="font-bold text-slate-300">
-                <span className="text-indigo-400">D</span>ev<span className="text-indigo-400">F</span>ull<span className="text-indigo-400">C</span>ode
-              </span>
+              <DevFullCodeLink className="font-bold text-slate-300 transition-colors hover:text-white">
+                <span className="text-indigo-400">D</span>ev
+                <span className="text-indigo-400">F</span>ull
+                <span className="text-indigo-400">C</span>ode
+              </DevFullCodeLink>
             </p>
             <p className="text-xs font-medium tracking-wide text-slate-500">
-              Transformando Códigos em Soluções
+              <DevFullCodeLink className="transition-colors hover:text-slate-300">
+                Transformando Códigos em Soluções
+              </DevFullCodeLink>
             </p>
             <p className="text-xs text-slate-600">
-              © 2016 DevFullCode. Todos os direitos reservados.
+              © 2016{" "}
+              <DevFullCodeLink className="transition-colors hover:text-slate-400">
+                DevFullCode
+              </DevFullCodeLink>
+              . Todos os direitos reservados.
             </p>
           </div>
         </div>
