@@ -135,12 +135,9 @@ export default async function ProductPage({ params }: PageProps) {
                 <div className="lg:col-span-3" />
               )}
 
-              <aside className="lg:col-span-2">
+              <aside className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
                 {product.purchaseLinks && product.purchaseLinks.length > 0 ? (
-                  <PurchaseLinks
-                    links={product.purchaseLinks}
-                    className="sticky top-24"
-                  />
+                  <PurchaseLinks links={product.purchaseLinks} />
                 ) : (
                   <div className="surface-card rounded-2xl border-dashed p-6 text-center text-sm text-slate-500">
                     Links de compra ainda não cadastrados.

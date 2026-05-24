@@ -86,18 +86,30 @@ export function PurchaseLinks({ links, className }: PurchaseLinksProps) {
                 : "noopener noreferrer"
             }
             className={cn(
-              "inline-flex min-h-12 items-center justify-between gap-3 rounded-xl border border-border/70 bg-background px-4 py-3 text-sm font-semibold transition-all",
-              platformStyles[link.platform],
-              index === 0 && "ring-2 ring-primary/20"
+              "inline-flex min-h-12 items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm font-semibold transition-all",
+              index === 0
+                ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25 hover:bg-primary/90"
+                : "border-primary/30 bg-background text-primary hover:border-primary hover:bg-primary/5",
+              index !== 0 && platformStyles[link.platform]
             )}
           >
             <span className="inline-flex items-center gap-2.5">
-              <span className="flex size-8 items-center justify-center rounded-lg bg-muted">
+              <span
+                className={cn(
+                  "flex size-8 items-center justify-center rounded-lg",
+                  index === 0 ? "bg-white/20" : "bg-primary/10"
+                )}
+              >
                 <PlatformIcon platform={link.platform} />
               </span>
               {link.label}
             </span>
-            <ExternalLink className="size-4 opacity-40" />
+            <ExternalLink
+              className={cn(
+                "size-4",
+                index === 0 ? "opacity-80" : "opacity-40"
+              )}
+            />
             <span className="sr-only">({platformLabels[link.platform]})</span>
           </a>
         ))}

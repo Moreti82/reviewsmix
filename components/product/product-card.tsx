@@ -60,7 +60,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="mt-5 flex justify-center lg:justify-end">
           <Link
             href={`/produto/${product.slug}`}
-            className="inline-flex items-center gap-2 rounded-full bg-[#9acd32] px-5 py-2.5 text-sm font-extrabold text-slate-950 shadow-lg shadow-lime-500/10 transition-all hover:bg-[#8bb829] hover:shadow-lime-500/20"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-extrabold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-primary/30"
           >
             Onde comprar
             <ArrowRight className="size-4" />
