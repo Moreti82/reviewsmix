@@ -16,6 +16,19 @@ import {
   getProductBySlug,
   getProducts,
 } from "@/lib/sanity/fetch";
+import type { Product } from "@/lib/sanity/types";
+
+function ProductPurchasePanel({ product }: { product: Product }) {
+  if (product.purchaseLinks && product.purchaseLinks.length > 0) {
+    return <PurchaseLinks links={product.purchaseLinks} />;
+  }
+
+  return (
+    <div className="surface-card rounded-2xl border-dashed p-6 text-center text-sm text-slate-500">
+      Links de compra ainda não cadastrados.
+    </div>
+  );
+}
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -78,87 +91,85 @@ export default async function ProductPage({ params }: PageProps) {
             ]}
           />
 
-          <div className="mx-auto max-w-5xl">
-            <ProductGallery
-              images={uniqueProductImages(product.images)}
-              productName={product.name}
-              fallbackSeed={product.slug}
-            />
+          <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] lg:items-start lg:gap-10 xl:gap-12">
+            <div className="min-w-0">
+              <div className="mx-auto max-w-5xl">
+                <ProductGallery
+                  images={uniqueProductImages(product.images)}
+                  productName={product.name}
+                  fallbackSeed={product.slug}
+                />
 
-            <div className="mx-auto max-w-3xl text-center">
-              {product.brand ? (
-                <p className="text-sm font-bold uppercase tracking-wider text-indigo-600">
-                  {product.brand}
-                </p>
-              ) : null}
+                <div className="mx-auto max-w-3xl text-center">
+                  {product.brand ? (
+                    <p className="text-sm font-bold uppercase tracking-wider text-indigo-600">
+                      {product.brand}
+                    </p>
+                  ) : null}
 
-              <div className="mt-3 flex flex-col items-center gap-4">
-                <h1 className="text-3xl font-extrabold md:text-4xl lg:text-5xl">
-                  {product.name}
-                </h1>
-                {product.rating != null ? (
-                  <RatingBadge rating={product.rating} size="lg" />
+                  <div className="mt-3 flex flex-col items-center gap-4">
+                    <h1 className="text-3xl font-extrabold md:text-4xl lg:text-5xl">
+                      {product.name}
+                    </h1>
+                    {product.rating != null ? (
+                      <RatingBadge rating={product.rating} size="lg" />
+                    ) : null}
+                  </div>
+
+                  {product.category ? (
+                    <Link
+                      href={`/categoria/${product.category.slug}`}
+                      className="mt-3 inline-block text-sm font-semibold text-indigo-600 hover:underline"
+                    >
+                      {product.category.title}
+                    </Link>
+                  ) : null}
+
+                  {product.shortDescription ? (
+                    <p className="rich-text mx-auto mt-5 max-w-2xl text-lg text-slate-600">
+                      {product.shortDescription}
+                    </p>
+                  ) : null}
+
+                  {product.priceRange ? (
+                    <p className="mt-4 text-2xl font-extrabold text-slate-900">
+                      {product.priceRange}
+                    </p>
+                  ) : null}
+                </div>
+
+                <div className="sticky top-20 z-30 mx-auto mt-10 max-w-md lg:hidden">
+                  <ProductPurchasePanel product={product} />
+                </div>
+
+                {product.specs && product.specs.length > 0 ? (
+                  <section className="mx-auto mt-12 max-w-4xl">
+                    <h2 className="mb-5 text-center text-xl font-bold lg:text-left">
+                      Especificações
+                    </h2>
+                    <SpecsTable specs={product.specs} />
+                  </section>
+                ) : null}
+
+                {relatedPosts.length > 0 ? (
+                  <section className="mx-auto mt-20 max-w-5xl border-t border-indigo-100 pt-16">
+                    <h2 className="text-center text-2xl font-extrabold">
+                      Reviews relacionados
+                    </h2>
+                    <div className="mt-8 grid gap-8 md:grid-cols-2">
+                      {relatedPosts.map((post) => (
+                        <PostCard key={post._id} post={post} />
+                      ))}
+                    </div>
+                  </section>
                 ) : null}
               </div>
-
-              {product.category ? (
-                <Link
-                  href={`/categoria/${product.category.slug}`}
-                  className="mt-3 inline-block text-sm font-semibold text-indigo-600 hover:underline"
-                >
-                  {product.category.title}
-                </Link>
-              ) : null}
-
-              {product.shortDescription ? (
-                <p className="rich-text mx-auto mt-5 max-w-2xl text-lg text-slate-600">
-                  {product.shortDescription}
-                </p>
-              ) : null}
-
-              {product.priceRange ? (
-                <p className="mt-4 text-2xl font-extrabold text-slate-900">
-                  {product.priceRange}
-                </p>
-              ) : null}
             </div>
 
-            <div className="mx-auto mt-12 grid max-w-4xl gap-10 lg:grid-cols-5">
-              {product.specs && product.specs.length > 0 ? (
-                <section className="lg:col-span-3">
-                  <h2 className="mb-5 text-center text-xl font-bold lg:text-left">
-                    Especificações
-                  </h2>
-                  <SpecsTable specs={product.specs} />
-                </section>
-              ) : (
-                <div className="lg:col-span-3" />
-              )}
-
-              <aside className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
-                {product.purchaseLinks && product.purchaseLinks.length > 0 ? (
-                  <PurchaseLinks links={product.purchaseLinks} />
-                ) : (
-                  <div className="surface-card rounded-2xl border-dashed p-6 text-center text-sm text-slate-500">
-                    Links de compra ainda não cadastrados.
-                  </div>
-                )}
-              </aside>
-            </div>
+            <aside className="hidden lg:sticky lg:top-24 lg:block lg:self-start">
+              <ProductPurchasePanel product={product} />
+            </aside>
           </div>
-
-          {relatedPosts.length > 0 ? (
-            <section className="mx-auto mt-20 max-w-5xl border-t border-indigo-100 pt-16">
-              <h2 className="text-center text-2xl font-extrabold">
-                Reviews relacionados
-              </h2>
-              <div className="mt-8 grid gap-8 md:grid-cols-2">
-                {relatedPosts.map((post) => (
-                  <PostCard key={post._id} post={post} />
-                ))}
-              </div>
-            </section>
-          ) : null}
         </PageShell>
       </div>
     </>
