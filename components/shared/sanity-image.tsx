@@ -51,32 +51,39 @@ export function SanityImage({
   aspect = "video",
   objectFit,
 }: SanityImageProps) {
+  // Por padrão, usamos contain para não cortar nenhuma imagem do site
+  const fit = objectFit ?? "contain";
   const sizes = aspectSizes[aspect];
   const w = width ?? sizes.w;
   const h = height ?? sizes.h;
-  const src =
-    getImageUrl(image, w, h) ?? placeholderUrl(fallbackSeed, w, h);
 
-  // Por padrão, usamos contain para não cortar nenhuma imagem do site
-  const fit = objectFit ?? "contain";
+  // Se o fit for "contain", não passamos a altura para o Sanity para evitar que ele corte a imagem no servidor.
+  // Deixamos o navegador fazer o "contain" da imagem inteira.
+  const sanityHeight = fit === "contain" ? undefined : h;
 
-  // Product or explicit contain images: use explicit dimensions so the image is never clipped
+  const src = image
+    ? (getImageUrl(image, w, sanityHeight) ?? placeholderUrl(fallbackSeed, w, h))
+    : placeholderUrl(fallbackSeed, w, h);
+
+  // Product or explicit contain images: use explicit dimensions inside a fixed aspect ratio container with generous padding to prevent clipping
   if (fit === "contain" && aspect === "product") {
     return (
       <div
         className={cn(
-          "img-frame w-full bg-white border border-slate-100 p-2",
+          "img-frame relative w-full aspect-[4/3] bg-white border border-slate-100 p-5 flex items-center justify-center",
           containerClassName
         )}
       >
-        <Image
-          src={src}
-          alt={alt}
-          width={w}
-          height={h}
-          priority={priority}
-          className={cn("w-full h-auto object-contain", className)}
-        />
+        <div className="relative w-full h-full">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+            priority={priority}
+            className={cn("object-contain object-center", className)}
+          />
+        </div>
       </div>
     );
   }

@@ -66,7 +66,7 @@ export function ProductGallery({
       className="product-gallery mb-8 mx-auto flex w-full max-w-4xl flex-col items-center"
     >
       {/* Imagem principal — uma por vez */}
-      <div className="w-full min-h-[280px] sm:min-h-[360px]">
+      <div className="w-full aspect-[4/3]">
         <SanityImage
           key={activeKey}
           image={activeImage}

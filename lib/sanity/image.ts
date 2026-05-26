@@ -31,10 +31,14 @@ export function uniqueProductImages(images?: SanityImage[]): SanityImage[] {
 export function getImageUrl(
   image?: SanityImage,
   width = 800,
-  height = 450
+  height?: number
 ): string | null {
   if (!hasImageAsset(image)) return null;
-  return urlFor(image!).width(width).height(height).fit("max").auto("format").url();
+  let imageBuilder = urlFor(image!).width(width);
+  if (height !== undefined) {
+    imageBuilder = imageBuilder.height(height);
+  }
+  return imageBuilder.fit("max").auto("format").url();
 }
 
 /** Returns the original image URL with no dimension or crop constraints. */
