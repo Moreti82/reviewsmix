@@ -9,36 +9,6 @@ const imageFields = groq`
   }
 `;
 
-const categoryFields = groq`
-  _id,
-  title,
-  "slug": slug.current,
-  description,
-  image { ${imageFields} }
-`;
-
-const purchaseLinkFields = groq`
-  label,
-  url,
-  platform,
-  isAffiliate,
-  priority
-`;
-
-const productFields = groq`
-  _id,
-  name,
-  "slug": slug.current,
-  brand,
-  shortDescription,
-  rating,
-  priceRange,
-  specs,
-  purchaseLinks[]{ ${purchaseLinkFields} },
-  images[]{ ${imageFields} },
-  category->{ _id, title, "slug": slug.current }
-`;
-
 export const postsQuery = groq`
   *[_type == "post"] | order(publishedAt desc) {
     _id,
@@ -49,8 +19,7 @@ export const postsQuery = groq`
     rating,
     readingTime,
     publishedAt,
-    featured,
-    category->{ _id, title, "slug": slug.current }
+    featured
   }
 `;
 
@@ -63,8 +32,7 @@ export const featuredPostsQuery = groq`
     coverImage { ${imageFields} },
     rating,
     readingTime,
-    publishedAt,
-    category->{ _id, title, "slug": slug.current }
+    publishedAt
   }
 `;
 
@@ -83,53 +51,7 @@ export const postBySlugQuery = groq`
     readingTime,
     publishedAt,
     seoTitle,
-    seoDescription,
-    category->{ _id, title, "slug": slug.current },
-    products[]->{ ${productFields} }
-  }
-`;
-
-export const productsQuery = groq`
-  *[_type == "product"] | order(name asc) {
-    ${productFields}
-  }
-`;
-
-export const productBySlugQuery = groq`
-  *[_type == "product" && slug.current == $slug][0] {
-    ${productFields}
-  }
-`;
-
-export const categoriesQuery = groq`
-  *[_type == "category"] | order(title asc) {
-    ${categoryFields}
-  }
-`;
-
-export const categoryBySlugQuery = groq`
-  *[_type == "category" && slug.current == $slug][0] {
-    ${categoryFields}
-  }
-`;
-
-export const postsByCategoryQuery = groq`
-  *[_type == "post" && category->slug.current == $slug] | order(publishedAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    excerpt,
-    coverImage { ${imageFields} },
-    rating,
-    readingTime,
-    publishedAt,
-    category->{ _id, title, "slug": slug.current }
-  }
-`;
-
-export const productsByCategoryQuery = groq`
-  *[_type == "product" && category->slug.current == $slug] | order(name asc) {
-    ${productFields}
+    seoDescription
   }
 `;
 
@@ -145,17 +67,6 @@ export const searchPostsQuery = groq`
     coverImage { ${imageFields} },
     rating,
     readingTime,
-    publishedAt,
-    category->{ _id, title, "slug": slug.current }
-  }
-`;
-
-export const searchProductsQuery = groq`
-  *[_type == "product" && (
-    name match $term + "*" ||
-    shortDescription match $term + "*" ||
-    brand match $term + "*"
-  )] | order(name asc)[0...12] {
-    ${productFields}
+    publishedAt
   }
 `;

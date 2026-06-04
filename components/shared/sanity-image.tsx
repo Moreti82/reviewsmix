@@ -15,7 +15,7 @@ type SanityImageProps = {
   containerClassName?: string;
   priority?: boolean;
   fallbackSeed?: string;
-  aspect?: "video" | "square" | "wide" | "hero" | "product";
+  aspect?: "video" | "square" | "wide" | "hero";
   objectFit?: "cover" | "contain";
 };
 
@@ -24,7 +24,6 @@ const aspectClasses = {
   square: "aspect-square",
   wide: "aspect-[21/9]",
   hero: "aspect-[16/10]",
-  product: "aspect-[4/3]",
 };
 
 const aspectSizes = {
@@ -32,7 +31,6 @@ const aspectSizes = {
   square: { w: 800, h: 800 },
   wide: { w: 1400, h: 600 },
   hero: { w: 1200, h: 750 },
-  product: { w: 960, h: 720 },
 };
 
 function placeholderUrl(seed: string, width: number, height: number) {
@@ -65,29 +63,6 @@ export function SanityImage({
     ? (getImageUrl(image, w, sanityHeight) ?? placeholderUrl(fallbackSeed, w, h))
     : placeholderUrl(fallbackSeed, w, h);
 
-  // Product or explicit contain images: use explicit dimensions inside a fixed aspect ratio container with generous padding to prevent clipping
-  if (fit === "contain" && aspect === "product") {
-    return (
-      <div
-        className={cn(
-          "img-frame relative w-full aspect-[4/3] bg-white border border-slate-100 p-5 flex items-center justify-center",
-          containerClassName
-        )}
-      >
-        <div className="relative w-full h-full">
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-            priority={priority}
-            className={cn("object-contain object-center", className)}
-          />
-        </div>
-      </div>
-    );
-  }
-
   // Cover images: use fill inside a fixed aspect-ratio container but with object-contain to avoid cropping
   return (
     <div
@@ -108,4 +83,3 @@ export function SanityImage({
     </div>
   );
 }
-

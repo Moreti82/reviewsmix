@@ -14,23 +14,23 @@ export default function SobrePage() {
       <PageShell narrow>
         <PageHeader
           title="Sobre o ReviewsMix"
-          description="Reviews independentes para ajudar você a comprar melhor."
+          description="Reviews independentes para ajudar você a decidir melhor."
         />
 
         <div className="surface-card space-y-8 rounded-2xl p-8 text-center md:p-10">
           <p className="rich-text text-slate-600">
-            O ReviewsMix publica análises detalhadas de produtos, com prós, contras e
-            links para lojas parceiras. Nosso objetivo é informar — não empurrar
-            compras desnecessárias.
+            O ReviewsMix publica análises detalhadas com prós, contras, notas e
+            vereditos editoriais. Nosso objetivo é informar com clareza, contexto
+            e independência.
           </p>
           <div>
             <h2 className="text-xl font-bold text-slate-900">
-              Política de afiliados
+              Política editorial
             </h2>
             <p className="rich-text mt-3 text-slate-600">
-              Alguns links neste site são de afiliado. Quando você compra através
-              deles, podemos receber uma comissão sem custo extra para você. Isso
-              ajuda a manter o site e não influencia nossa nota editorial.
+              As notas seguem critérios editoriais consistentes. Prós, contras e
+              vereditos são apresentados para facilitar a leitura sem substituir a
+              decisão final de quem acompanha o review.
             </p>
           </div>
         </div>

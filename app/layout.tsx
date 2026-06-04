@@ -26,13 +26,12 @@ export const metadata: Metadata = {
     template: "%s | ReviewsMix",
   },
 
-  description:
-    "Reviews, comparações e análises completas dos melhores produtos.",
+  description: "Reviews, comparações e análises completas com critérios claros.",
 
   openGraph: {
     title: "ReviewsMix",
     description:
-      "Reviews, comparações e análises completas dos melhores produtos.",
+      "Reviews, comparações e análises completas com critérios claros.",
     siteName: "ReviewsMix",
     locale: "pt_BR",
     type: "website",

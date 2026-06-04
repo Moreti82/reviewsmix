@@ -32,18 +32,6 @@ export const post = defineType({
       options: { hotspot: true },
     }),
     defineField({
-      name: "category",
-      title: "Categoria",
-      type: "reference",
-      to: [{ type: "category" }],
-    }),
-    defineField({
-      name: "products",
-      title: "Produtos relacionados",
-      type: "array",
-      of: [defineArrayMember({ type: "reference", to: [{ type: "product" }] })],
-    }),
-    defineField({
       name: "body",
       title: "Conteúdo",
       type: "array",

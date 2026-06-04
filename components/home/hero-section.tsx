@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Star, Zap } from "lucide-react";
+import { ArrowRight, ClipboardCheck, Star, Zap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/layout/page-shell";
 
 const stats = [
   { icon: Star, label: "Reviews imparciais", value: "Nota editorial" },
-  { icon: ShieldCheck, label: "Links verificados", value: "Lojas confiáveis" },
+  { icon: ClipboardCheck, label: "Critérios claros", value: "Método objetivo" },
   { icon: Zap, label: "Atualizado", value: "Conteúdo 2026" },
 ];
 
@@ -23,14 +23,13 @@ export function HeroSection() {
           </span>
 
           <h1 className="mt-8 text-4xl font-extrabold leading-[1.05] md:text-6xl lg:text-7xl">
-            Descubra os{" "}
-            <span className="text-gradient">melhores produtos</span> antes de
-            comprar
+            Leia <span className="text-gradient">reviews completos</span> antes
+            de decidir
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 md:text-xl">
-            Análises completas, comparativos honestos e links diretos para
-            comprar com transparência.
+            Análises completas, comparativos honestos e notas editoriais para
+            ajudar você a escolher com confiança.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -39,8 +38,8 @@ export function HeroSection() {
               className="h-12 rounded-full px-8 text-base shadow-xl shadow-indigo-500/30"
               asChild
             >
-              <Link href="/produto">
-                Explorar produtos
+              <Link href="/blog">
+                Ler reviews
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
@@ -50,7 +49,7 @@ export function HeroSection() {
               className="h-12 rounded-full border-indigo-200 bg-white px-8 text-base text-indigo-700 hover:bg-indigo-50"
               asChild
             >
-              <Link href="/blog">Ler reviews</Link>
+              <Link href="/sobre">Nossa metodologia</Link>
             </Button>
           </div>
         </div>

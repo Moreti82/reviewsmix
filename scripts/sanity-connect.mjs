@@ -14,7 +14,7 @@ function loadEnv() {
     console.log("2. Copie o Project ID");
     console.log("3. Crie .env.local com:");
     console.log(`
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=http://localhost:3002
 NEXT_PUBLIC_SANITY_PROJECT_ID=seu_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2025-01-01
@@ -52,8 +52,8 @@ console.log(`   Project: ${projectId}`);
 console.log(`   Dataset: ${dataset}`);
 
 const corsOrigins = [
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
+  "http://localhost:3002",
+  "http://127.0.0.1:3002",
 ];
 
 for (const origin of corsOrigins) {
@@ -83,7 +83,7 @@ if (!env.NEXT_PUBLIC_SITE_URL) {
   if (!content.includes("NEXT_PUBLIC_SITE_URL")) {
     writeFileSync(
       envPath,
-      `NEXT_PUBLIC_SITE_URL=http://localhost:3000\n${content}`,
+      `NEXT_PUBLIC_SITE_URL=http://localhost:3002\n${content}`,
       "utf8"
     );
   }
@@ -91,5 +91,5 @@ if (!env.NEXT_PUBLIC_SITE_URL) {
 
 console.log("\n✅ Sanity conectado!");
 console.log("   1. npm run dev");
-console.log("   2. Abra http://localhost:3000/studio");
+console.log("   2. Abra http://localhost:3002/studio");
 console.log("   3. Publique/edite conteúdo no CMS\n");

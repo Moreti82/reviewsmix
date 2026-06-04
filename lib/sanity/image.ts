@@ -13,21 +13,6 @@ export function hasImageAsset(image?: SanityImage): boolean {
   return Boolean(image?.asset?._ref || image?.asset?._id || image?.asset?.url);
 }
 
-/** Remove entradas vazias e imagens duplicadas (mesmo asset). */
-export function uniqueProductImages(images?: SanityImage[]): SanityImage[] {
-  if (!images?.length) return [];
-
-  const seen = new Set<string>();
-  return images.filter((image) => {
-    if (!hasImageAsset(image)) return false;
-    const id =
-      image.asset?._ref ?? image.asset?._id ?? image.asset?.url ?? "";
-    if (seen.has(id)) return false;
-    seen.add(id);
-    return true;
-  });
-}
-
 export function getImageUrl(
   image?: SanityImage,
   width = 800,

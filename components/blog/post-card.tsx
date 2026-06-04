@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Calendar, Clock } from "lucide-react";
 
-import { RatingBadge } from "@/components/product/rating-badge";
+import { RatingBadge } from "@/components/blog/rating-badge";
 import { SanityImage } from "@/components/shared/sanity-image";
 import type { Post } from "@/lib/sanity/types";
 import { cn } from "@/lib/utils";
@@ -18,7 +18,7 @@ function formatDate(iso?: string) {
 type PostCardProps = {
   post: Post;
   featured?: boolean;
-  aspect?: "video" | "square" | "wide" | "hero" | "product";
+  aspect?: "video" | "square" | "wide" | "hero";
 };
 
 export function PostCard({ post, featured = false, aspect }: PostCardProps) {
@@ -53,18 +53,9 @@ export function PostCard({ post, featured = false, aspect }: PostCardProps) {
           featured && "lg:justify-center"
         )}
       >
-        {post.category ? (
-          <Link
-            href={`/categoria/${post.category.slug}`}
-            className="text-xs font-bold uppercase tracking-wider text-indigo-600 hover:underline"
-          >
-            {post.category.title}
-          </Link>
-        ) : null}
-
         <h3
           className={cn(
-            "mt-3 font-bold leading-snug text-slate-900",
+            "font-bold leading-snug text-slate-900",
             featured ? "text-2xl lg:text-3xl" : "text-xl"
           )}
         >

@@ -1,6 +1,6 @@
-# ReviewsMix — Blog de produtos
+# ReviewsMix — Blog de reviews
 
-Blog de reviews com fichas de produtos e links de compra (marketplaces e redes sociais).
+Blog de reviews com análises, prós, contras, notas editoriais e vereditos.
 
 ## Stack
 
@@ -16,7 +16,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000).
+Abra [http://localhost:3002](http://localhost:3002).
 
 Sem variáveis do Sanity, o site usa **dados de demonstração** (mock).
 
@@ -40,7 +40,7 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=seu_project_id_aqui
 npm run sanity:connect
 ```
 
-Esse comando configura CORS para `localhost:3000` e importa 3 categorias, 2 produtos e 3 reviews.
+Esse comando configura CORS para `localhost:3002` e importa reviews de exemplo.
 
 4. **Verifique a conexão**:
 
@@ -54,8 +54,8 @@ npm run sanity:check
 npm run dev
 ```
 
-- Site: [http://localhost:3000](http://localhost:3000)
-- CMS: [http://localhost:3000/studio](http://localhost:3000/studio)
+- Site: [http://localhost:3002](http://localhost:3002)
+- CMS: [http://localhost:3002/studio](http://localhost:3002/studio)
 
 ### Scripts Sanity
 
@@ -68,9 +68,9 @@ npm run dev
 
 ### Tipos de conteúdo no CMS
 
-- **Categoria** → **Produto** (com links de compra) → **Review / Artigo**
+- **Review / Artigo**
 
-Ordem sugerida ao publicar: categorias primeiro, depois produtos, depois reviews.
+Publique e organize os reviews diretamente no CMS.
 
 ---
 
@@ -81,19 +81,15 @@ Ordem sugerida ao publicar: categorias primeiro, depois produtos, depois reviews
 | `/` | Home com destaques |
 | `/blog` | Lista de reviews |
 | `/blog/[slug]` | Review completo |
-| `/produto` | Catálogo |
-| `/produto/[slug]` | Ficha + onde comprar |
-| `/categoria` | Categorias |
-| `/categoria/[slug]` | Conteúdo por categoria |
-| `/busca` | Busca de reviews e produtos |
-| `/sobre` | Sobre + política de afiliados |
+| `/busca` | Busca de reviews |
+| `/sobre` | Sobre + política editorial |
 | `/studio` | Painel Sanity |
 
 ## SEO
 
 - `app/sitemap.ts` — sitemap dinâmico com todas as rotas
 - `app/robots.ts` — bloqueia `/studio` para crawlers
-- JSON-LD em produtos, reviews e site (SearchAction)
+- JSON-LD em reviews e site (SearchAction)
 - Open Graph com imagens do Sanity quando disponíveis
 
 ## Atalhos

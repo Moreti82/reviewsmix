@@ -8,7 +8,7 @@ import { getPosts } from "@/lib/sanity/fetch";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Reviews, comparativos e guias de compra do ReviewsMix.",
+  description: "Reviews, comparativos e análises do ReviewsMix.",
 };
 
 export default async function BlogPage() {

@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { PostCard } from "@/components/blog/post-card";
 import { PageHeader } from "@/components/layout/page-header";
 import { PageShell } from "@/components/layout/page-shell";
-import { ProductCard } from "@/components/product/product-card";
 import { EmptyState } from "@/components/shared/empty-state";
 import { searchContent } from "@/lib/sanity/fetch";
 
@@ -13,17 +12,15 @@ type PageProps = {
 
 export const metadata: Metadata = {
   title: "Busca",
-  description: "Encontre reviews e produtos no ReviewsMix.",
+  description: "Encontre reviews no ReviewsMix.",
 };
 
 export default async function BuscaPage({ searchParams }: PageProps) {
   const { q = "" } = await searchParams;
   const term = q.trim();
-  const { posts, products } = term
-    ? await searchContent(term)
-    : { posts: [], products: [] };
+  const posts = term ? await searchContent(term) : [];
 
-  const hasResults = posts.length > 0 || products.length > 0;
+  const hasResults = posts.length > 0;
 
   return (
     <section className="border-b border-indigo-100 bg-hero py-16 md:py-20">
@@ -33,8 +30,8 @@ export default async function BuscaPage({ searchParams }: PageProps) {
           title={term ? `Resultados para “${term}”` : "Buscar"}
           description={
             term
-              ? `${posts.length + products.length} resultado(s) encontrado(s).`
-              : "Digite um termo na barra de busca para encontrar reviews e produtos."
+              ? `${posts.length} resultado(s) encontrado(s).`
+              : "Digite um termo na barra de busca para encontrar reviews."
           }
         />
 
@@ -50,17 +47,6 @@ export default async function BuscaPage({ searchParams }: PageProps) {
             title="Nenhum resultado"
             description={`Não encontramos conteúdo para “${term}”. Tente outro termo.`}
           />
-        ) : null}
-
-        {products.length > 0 ? (
-          <section className="mb-14">
-            <h2 className="mb-8 text-center text-xl font-bold">Produtos</h2>
-            <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-            </div>
-          </section>
         ) : null}
 
         {posts.length > 0 ? (

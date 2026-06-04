@@ -49,46 +49,6 @@ export function articleJsonLd(post: {
   };
 }
 
-export function productJsonLd(product: {
-  name: string;
-  slug: string;
-  shortDescription?: string;
-  brand?: string;
-  rating?: number;
-  priceRange?: string;
-  purchaseLinks?: { url: string; label: string }[];
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.shortDescription,
-    url: `${siteUrl}/produto/${product.slug}`,
-    ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}),
-    ...(product.rating != null
-      ? {
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: product.rating,
-            bestRating: 10,
-            worstRating: 0,
-            ratingCount: 1,
-          },
-        }
-      : {}),
-    ...(product.purchaseLinks?.length
-      ? {
-          offers: product.purchaseLinks.map((link) => ({
-            "@type": "Offer",
-            url: link.url,
-            availability: "https://schema.org/InStock",
-            seller: { "@type": "Organization", name: link.label },
-          })),
-        }
-      : {}),
-  };
-}
-
 export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",

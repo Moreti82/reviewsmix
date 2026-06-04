@@ -1,25 +1,15 @@
 import type { MetadataRoute } from "next";
 
-import {
-  getCategories,
-  getPosts,
-  getProducts,
-} from "@/lib/sanity/fetch";
+import { getPosts } from "@/lib/sanity/fetch";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, products, categories] = await Promise.all([
-    getPosts(),
-    getProducts(),
-    getCategories(),
-  ]);
+  const posts = await getPosts();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     "",
     "/blog",
-    "/produto",
-    "/categoria",
     "/sobre",
     "/busca",
   ].map((path) => ({
@@ -36,19 +26,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const productRoutes: MetadataRoute.Sitemap = products.map((product) => ({
-    url: `${siteUrl}/produto/${product.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
-
-  const categoryRoutes: MetadataRoute.Sitemap = categories.map((category) => ({
-    url: `${siteUrl}/categoria/${category.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
-
-  return [...staticRoutes, ...postRoutes, ...productRoutes, ...categoryRoutes];
+  return [...staticRoutes, ...postRoutes];
 }

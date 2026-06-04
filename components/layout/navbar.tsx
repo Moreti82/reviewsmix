@@ -8,8 +8,6 @@ import { PageShell } from "@/components/layout/page-shell";
 const links = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
-  { href: "/categoria", label: "Categorias" },
-  { href: "/produto", label: "Produtos" },
   { href: "/sobre", label: "Sobre" },
 ];
 

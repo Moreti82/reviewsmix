@@ -6,8 +6,6 @@ import { PageShell } from "@/components/layout/page-shell";
 
 const footerLinks = [
   { href: "/blog", label: "Blog" },
-  { href: "/produto", label: "Produtos" },
-  { href: "/categoria", label: "Categorias" },
   { href: "/busca", label: "Busca" },
   { href: "/sobre", label: "Sobre" },
 ];
@@ -41,8 +39,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start">
             <Logo inverted />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">
-              Reviews e análises profissionais com links transparentes para
-              compra.
+              Reviews e análises profissionais com critérios editoriais claros.
             </p>
           </div>
 
@@ -69,7 +66,8 @@ export function Footer() {
               Transparência
             </h4>
             <p className="mt-5 text-sm leading-relaxed text-slate-400">
-              Podemos receber comissão por compras via links de afiliado.{" "}
+              Nosso conteúdo prioriza análise clara, contexto prático e
+              critérios editoriais consistentes.{" "}
               <Link href="/sobre" className="text-indigo-300 hover:text-white">
                 Saiba mais
               </Link>

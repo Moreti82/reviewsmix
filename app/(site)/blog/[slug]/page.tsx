@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Calendar, Clock } from "lucide-react";
 
 import { PostBody } from "@/components/blog/portable-text";
 import { PostCard } from "@/components/blog/post-card";
 import { ProsCons } from "@/components/blog/pros-cons";
+import { RatingBadge } from "@/components/blog/rating-badge";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PageShell } from "@/components/layout/page-shell";
-import { ProductCard } from "@/components/product/product-card";
-import { RatingBadge } from "@/components/product/rating-badge";
 import { articleJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { SanityImage } from "@/components/shared/sanity-image";
 import { getOgImageUrl } from "@/lib/sanity/image";
@@ -62,10 +60,7 @@ export default async function PostPage({ params }: PageProps) {
 
   const allPosts = await getPosts();
   const relatedPosts = allPosts
-    .filter(
-      (p) =>
-        p.slug !== post.slug && p.category?.slug === post.category?.slug
-    )
+    .filter((p) => p.slug !== post.slug)
     .slice(0, 3);
 
   return (
@@ -93,15 +88,7 @@ export default async function PostPage({ params }: PageProps) {
             />
 
             <header className="text-center">
-              {post.category ? (
-                <Link
-                  href={`/categoria/${post.category.slug}`}
-                  className="text-sm font-bold uppercase tracking-wider text-indigo-600 hover:underline"
-                >
-                  {post.category.title}
-                </Link>
-              ) : null}
-              <div className="mt-4 flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center gap-4">
                 <h1 className="text-3xl font-extrabold md:text-4xl lg:text-5xl">
                   {post.title}
                 </h1>
@@ -143,19 +130,6 @@ export default async function PostPage({ params }: PageProps) {
               ) : null}
             </div>
           </div>
-
-          {post.products && post.products.length > 0 ? (
-            <section className="mx-auto mt-20 max-w-5xl border-t border-indigo-100 pt-16">
-              <h2 className="text-center text-2xl font-extrabold">
-                Produtos deste review
-              </h2>
-              <div className="mt-8 grid gap-8 md:grid-cols-2">
-                {post.products.map((product) => (
-                  <ProductCard key={product._id} product={product} />
-                ))}
-              </div>
-            </section>
-          ) : null}
 
           {relatedPosts.length > 0 ? (
             <section className="mx-auto mt-20 max-w-5xl border-t border-indigo-100 pt-16">

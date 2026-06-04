@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -77,7 +76,7 @@ export function NavbarSearch() {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar reviews e produtos..."
+              placeholder="Buscar reviews..."
               className="h-14 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
             />
             <button

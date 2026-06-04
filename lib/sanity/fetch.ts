@@ -1,23 +1,12 @@
 import { isSanityConfigured, sanityClient } from "./client";
+import { mockPosts } from "./mock-data";
 import {
-  mockCategories,
-  mockPosts,
-  mockProducts,
-} from "./mock-data";
-import {
-  categoriesQuery,
-  categoryBySlugQuery,
   featuredPostsQuery,
   postBySlugQuery,
-  postsByCategoryQuery,
   postsQuery,
-  productBySlugQuery,
-  productsByCategoryQuery,
-  productsQuery,
   searchPostsQuery,
-  searchProductsQuery,
 } from "./queries";
-import type { Category, Post, Product } from "./types";
+import type { Post } from "./types";
 
 type FetchResult<T> = { data: T | null; ok: boolean };
 
@@ -55,51 +44,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   return mockPosts.find((p) => p.slug === slug) ?? null;
 }
 
-export async function getProducts(): Promise<Product[]> {
-  const { data, ok } = await fetchFromSanity<Product[]>(productsQuery);
-  if (ok) return data ?? [];
-  return mockProducts;
-}
-
-export async function getProductBySlug(slug: string): Promise<Product | null> {
-  const { data, ok } = await fetchFromSanity<Product>(productBySlugQuery, {
-    slug,
-  });
-  if (ok) return data ?? null;
-  return mockProducts.find((p) => p.slug === slug) ?? null;
-}
-
-export async function getCategories(): Promise<Category[]> {
-  const { data, ok } = await fetchFromSanity<Category[]>(categoriesQuery);
-  if (ok) return data ?? [];
-  return mockCategories;
-}
-
-export async function getCategoryBySlug(slug: string): Promise<Category | null> {
-  const { data, ok } = await fetchFromSanity<Category>(categoryBySlugQuery, {
-    slug,
-  });
-  if (ok) return data ?? null;
-  return mockCategories.find((c) => c.slug === slug) ?? null;
-}
-
-export async function getPostsByCategory(slug: string): Promise<Post[]> {
-  const { data, ok } = await fetchFromSanity<Post[]>(postsByCategoryQuery, {
-    slug,
-  });
-  if (ok) return data ?? [];
-  return mockPosts.filter((p) => p.category?.slug === slug);
-}
-
-export async function getProductsByCategory(slug: string): Promise<Product[]> {
-  const { data, ok } = await fetchFromSanity<Product[]>(
-    productsByCategoryQuery,
-    { slug }
-  );
-  if (ok) return data ?? [];
-  return mockProducts.filter((p) => p.category?.slug === slug);
-}
-
 function normalizeSearchTerm(term: string) {
   return term.trim().toLowerCase();
 }
@@ -114,37 +58,15 @@ function searchMockPosts(term: string): Post[] {
   );
 }
 
-function searchMockProducts(term: string): Product[] {
-  const q = normalizeSearchTerm(term);
-  if (!q) return [];
-  return mockProducts.filter(
-    (product) =>
-      product.name.toLowerCase().includes(q) ||
-      product.shortDescription?.toLowerCase().includes(q) ||
-      product.brand?.toLowerCase().includes(q)
-  );
-}
-
-export async function searchContent(term: string): Promise<{
-  posts: Post[];
-  products: Product[];
-}> {
+export async function searchContent(term: string): Promise<Post[]> {
   const normalized = term.trim();
-  if (!normalized) return { posts: [], products: [] };
+  if (!normalized) return [];
 
-  const [postsResult, productsResult] = await Promise.all([
-    fetchFromSanity<Post[]>(searchPostsQuery, { term: normalized }),
-    fetchFromSanity<Product[]>(searchProductsQuery, { term: normalized }),
-  ]);
+  const postsResult = await fetchFromSanity<Post[]>(searchPostsQuery, {
+    term: normalized,
+  });
 
-  return {
-    posts: postsResult.ok
-      ? (postsResult.data ?? [])
-      : searchMockPosts(normalized),
-    products: productsResult.ok
-      ? (productsResult.data ?? [])
-      : searchMockProducts(normalized),
-  };
+  return postsResult.ok ? (postsResult.data ?? []) : searchMockPosts(normalized);
 }
 
 export { isSanityConfigured };
