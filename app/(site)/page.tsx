@@ -2,14 +2,15 @@ import { PostCard } from "@/components/blog/post-card";
 import { HeroSection } from "@/components/home/hero-section";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeader } from "@/components/layout/section-header";
-import { getFeaturedPosts } from "@/lib/sanity/fetch";
+import { getCategories, getFeaturedPosts } from "@/lib/sanity/fetch";
 
 export default async function HomePage() {
   const featuredPosts = await getFeaturedPosts();
+  const categories = await getCategories();
 
   return (
     <>
-      <HeroSection />
+      <HeroSection categories={categories} />
 
       {featuredPosts.length > 0 ? (
         <section className="py-16 md:py-24">

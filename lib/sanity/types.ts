@@ -6,6 +6,13 @@ export type SanityImage = {
   alt?: string;
 };
 
+export type Category = {
+  _id: string;
+  title: string;
+  icon?: SanityImage;
+  link: string;
+};
+
 export type Post = {
   _id: string;
   title: string;

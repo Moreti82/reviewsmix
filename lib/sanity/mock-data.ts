@@ -1,4 +1,4 @@
-import type { Post } from "./types";
+import type { Category, Post } from "./types";
 
 export const mockPosts: Post[] = [
   {
@@ -67,5 +67,38 @@ export const mockPosts: Post[] = [
     readingTime: 7,
     publishedAt: "2026-05-10T10:00:00.000Z",
     featured: true,
+  },
+];
+
+export const mockCategories: Category[] = [
+  {
+    _id: "cat-1",
+    title: "Celulares",
+    link: "https://www.amazon.com.br/b?node=16215489011",
+  },
+  {
+    _id: "cat-2",
+    title: "Áudio & Som",
+    link: "https://www.amazon.com.br/b?node=16215451011",
+  },
+  {
+    _id: "cat-3",
+    title: "Eletrodomésticos",
+    link: "https://www.amazon.com.br/b?node=17124911011",
+  },
+  {
+    _id: "cat-4",
+    title: "Casa Inteligente",
+    link: "https://www.amazon.com.br/b?node=19692482011",
+  },
+  {
+    _id: "cat-5",
+    title: "Informática",
+    link: "https://www.amazon.com.br/b?node=16339926011",
+  },
+  {
+    _id: "cat-6",
+    title: "Beleza & Saúde",
+    link: "https://www.amazon.com.br/b?node=16215682011",
   },
 ];

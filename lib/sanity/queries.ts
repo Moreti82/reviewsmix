@@ -70,3 +70,12 @@ export const searchPostsQuery = groq`
     publishedAt
   }
 `;
+
+export const categoriesQuery = groq`
+  *[_type == "category"] | order(title asc) {
+    _id,
+    title,
+    icon { ${imageFields} },
+    link
+  }
+`;

@@ -1,12 +1,13 @@
 import { isSanityConfigured, sanityClient } from "./client";
-import { mockPosts } from "./mock-data";
+import { mockCategories, mockPosts } from "./mock-data";
 import {
+  categoriesQuery,
   featuredPostsQuery,
   postBySlugQuery,
   postsQuery,
   searchPostsQuery,
 } from "./queries";
-import type { Post } from "./types";
+import type { Category, Post } from "./types";
 
 type FetchResult<T> = { data: T | null; ok: boolean };
 
@@ -67,6 +68,12 @@ export async function searchContent(term: string): Promise<Post[]> {
   });
 
   return postsResult.ok ? (postsResult.data ?? []) : searchMockPosts(normalized);
+}
+
+export async function getCategories(): Promise<Category[]> {
+  const { data, ok } = await fetchFromSanity<Category[]>(categoriesQuery);
+  if (ok && data && data.length > 0) return data;
+  return mockCategories;
 }
 
 export { isSanityConfigured };
