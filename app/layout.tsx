@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Sora } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 import { JsonLd, websiteJsonLd } from "@/components/seo/json-ld";
 
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-foreground antialiased">
         <JsonLd data={websiteJsonLd()} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
